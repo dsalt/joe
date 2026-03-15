@@ -705,6 +705,37 @@ static int purity_check(int c, off_t n)
 	return 1;
 }
 
+/* Calculate the common indent across the selection */
+/* Assumes that the indent is spaces and/or tabs */
+/* Returned value is in columns */
+
+static off_t get_common_indent_width(void)
+{
+	P *p = pdup(markb, "get_common_indent_width");
+	off_t maxwidth = 0x7FFFFFFF; /* that'd be one very wide indent */
+	off_t tab = p->b->o.tab;
+
+	p_goto_bol(p);
+	while (p->byte < markk->byte) {
+		int width = 0;
+		int c;
+		while ((c = pgetc(p)), c == ' ' || c == '\t')
+			if (c == '\t')
+				width = width + tab - (width % tab);
+			else
+				++width;
+		if (width < maxwidth)
+			maxwidth = width;
+		pnextl(p);
+	}
+	prm(p);
+
+	if (p->b->o.indentc == '\t')
+		return maxwidth - maxwidth % (tab * p->b->o.istep);
+	else
+		return maxwidth - maxwidth % p->b->o.istep;
+}
+
 /* Purity check single line */
 /* Verifies that at least n indentation characters match c */
 
@@ -717,6 +748,29 @@ static int is_pure(P *p, int c, off_t n)
 		}
 	}
 	return 1;
+}
+
+/* Eat pre-tab spaces which are insufficient to affect indentation */
+/* Column no. should be a multiple of the tab width */
+/* (if not, some spaces won't be eaten) */
+
+static void eat_pretab_spaces(P *p)
+{
+	P *q = pdup(p, "eat_pretab_spaces");
+	off_t indwid;
+	off_t col = piscol(p);
+
+	col -= col % p->b->o.tab; /* reduce to multiple of tab width */
+	if (p->b->o.indentc=='\t')
+		indwid = p->b->o.tab * p->b->o.istep;
+	else
+		indwid = p->b->o.istep;
+
+	while (brc(q) == ' ')
+		pgetc(q);
+	if (brc(q) == '\t' && piscol(q) - col < indwid)
+		bdel(p,q);
+	prm(q);
 }
 
 /* Left indent check */
@@ -809,6 +863,9 @@ int urindent(W *w, int k)
 						pfill(p,col+indwid,bw->o.indentc);
 					} else {
 						/* Simple insert */
+						/* ... with some clean-up if inserting tabs */
+						if (bw->o.indentc == '\t')
+							eat_pretab_spaces(p);
 						while (piscol(p) < bw->o.istep) {
 							binsc(p, bw->o.indentc);
 							pgetc(p);
@@ -907,6 +964,7 @@ int ulindent(W *w, int k)
 			/* All lines have enough whitespace for the left-shift */
 			P *p = pdup(markb, "ulindent");
 			P *q = pdup(markb, "ulindent");
+			const off_t common_width = get_common_indent_width();
 			off_t indwid;
 
 			if (bw->o.indentc=='\t')
@@ -924,6 +982,12 @@ int ulindent(W *w, int k)
 						while (piscol(q) < bw->o.istep)
 							pgetc(q);
 						bdel(p, q);
+					} else if (bw->o.indentc == '\t') {
+						/* Rewrite white space, but only up to the common indent width */
+						pcol(q, common_width);
+						bdel(p,q);
+						eat_pretab_spaces(p); /* Clean up following spaces if needed */
+						pfill(p, common_width / bw->o.tab, '\t');
 					} else {
 						/* Rewrite whitespace */
 						off_t col;
