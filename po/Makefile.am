@@ -1,5 +1,5 @@
 include $(top_srcdir)/Makevars
 
-data_lang_DATA = ru.po de.po fr.po uk.po zh_TW.po
+data_lang_DATA = ru.po de.po fr.po uk.po zh_TW.po en_GB.po
 
 EXTRA_DIST = $(data_lang_DATA)

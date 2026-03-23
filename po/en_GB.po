@@ -1,0 +1,2121 @@
+# JOE English (British/International) translation
+# Copyright (C) 2026 Joseph H Allen
+# This file is distributed under the same license as the JOE package.
+# Darren Salt <devspam@moreofthesa.me.uk>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: joe 4.6-95-g97e1b9e5 (git)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-23 00:33+0000\n"
+"PO-Revision-Date: 2026-03-23 00:30+0000\n"
+"Last-Translator: Darren Salt <devspam@moreofthesa.me.uk>\n"
+"Language-Team: en_GB <none>\n"
+"Language: English (British/International)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Comment: This is just a few spelling differences (mostly). But you knew that already.\n"
+
+#: b.c:43
+msgid "No error"
+msgstr ""
+
+#: b.c:44
+msgid "New File"
+msgstr ""
+
+#: b.c:45
+msgid "Error reading file"
+msgstr ""
+
+#: b.c:46
+msgid "Error seeking file"
+msgstr ""
+
+#: b.c:47
+msgid "Error opening file"
+msgstr ""
+
+#: b.c:48
+msgid "Error writing file"
+msgstr ""
+
+#: b.c:49
+msgid "File on disk is newer"
+msgstr ""
+
+#: b.c:3420
+#, c-format
+msgid ""
+"\n"
+"*** File '%s'\n"
+msgstr ""
+
+#: b.c:3422
+msgid ""
+"\n"
+"*** File '(Unnamed)'\n"
+msgstr ""
+
+#: cmd.c:231
+msgid "Could not create lock. (I) edit anyway, (Q) cancel edit? "
+msgstr ""
+
+#: cmd.c:232
+#, c-format
+msgid "Locked by %s. (S)teal lock, (I) edit anyway, (Q) cancel edit? "
+msgstr ""
+
+#: cmd.c:234
+msgid "|steal the lock|sS"
+msgstr ""
+
+#: cmd.c:235
+msgid "|cancel edit due to lock|qQ"
+msgstr ""
+
+#: cmd.c:236
+msgid "|ignore lock, continue with edit|iI"
+msgstr ""
+
+#: cmd.c:287
+msgid "Notice: File on disk changed! (hit %{abort} to continue)  "
+msgstr ""
+
+#: cmd.c:347
+msgid "Modify other window first for macro"
+msgstr ""
+
+#: cmd.c:355
+msgid "Other buffer is read only"
+msgstr "Other buffer is read-only"
+
+#: cmd.c:370 options.c:378
+msgid "Read only"
+msgstr "Read-only"
+
+#: cmd.c:568 cmd.c:578
+msgid "No such command"
+msgstr ""
+
+#: cmd.c:595
+msgid "Command: "
+msgstr ""
+
+#: colors.c:376
+#, c-format
+msgid "%s: %d: Invalid .colors specification\n"
+msgstr ""
+
+#: colors.c:400
+#, c-format
+msgid "%s: %d: Invalid .set directive\n"
+msgstr ""
+
+#: colors.c:403
+#, c-format
+msgid "%s: %d: Unexpected directive %s\n"
+msgstr ""
+
+#: colors.c:406
+#, c-format
+msgid "%s: %d: Syntax error\n"
+msgstr ""
+
+#: colors.c:410
+#, c-format
+msgid "%s: %d: Unexpected declaration outside of color block\n"
+msgstr "%s: %d: Unexpected declaration outside of colour block\n"
+
+#: colors.c:420 colors.c:430 colors.c:457
+#, c-format
+msgid "%s: %d: Invalid color spec\n"
+msgstr "%s: %d: Invalid colour spec\n"
+
+#: colors.c:423
+#, c-format
+msgid "%s: %d: Invalid terminal color\n"
+msgstr "%s: %d: Invalid terminal colour\n"
+
+#: colors.c:438
+#, c-format
+msgid "%s: %d: Unknown builtin color %s\n"
+msgstr "%s: %d: Unknown builtin colour %s\n"
+
+#: colors.c:442 colors.c:461
+#, c-format
+msgid "%s: %d: Expected identifier\n"
+msgstr ""
+
+#: colors.c:804
+#, c-format
+msgid "%s: Recursive color definition found involving %s\n"
+msgstr "%s: Recursive colour definition found involving %s\n"
+
+#: help.c:77
+#, c-format
+msgid ""
+"\n"
+"%d: EOF before end of help text\n"
+msgstr ""
+
+#: kbd.c:420
+msgid "No such keymap"
+msgstr ""
+
+#: kbd.c:457
+msgid "Change keymap: "
+msgstr ""
+
+#: macro.c:535
+msgid "Macro to record (0-9 or %{abort} to abort): "
+msgstr ""
+
+#: macro.c:572
+msgid "Delay in seconds between macro invocation (%{abort} to abort): "
+msgstr ""
+
+#: macro.c:588
+msgid "Macro to play (0-9 or %{abort} to abort): "
+msgstr ""
+
+#: macro.c:692
+msgid "Play-"
+msgstr ""
+
+#: macro.c:721
+msgid "No. times to repeat next command (%{abort} to abort): "
+msgstr ""
+
+#: macro.c:754
+msgid "If (%{abort} to abort): "
+msgstr ""
+
+#: macro.c:761
+msgid "Elsif without if"
+msgstr ""
+
+#: macro.c:767
+msgid "Else if: "
+msgstr ""
+
+#: macro.c:776
+msgid "Else without if"
+msgstr ""
+
+#: macro.c:787
+msgid "Endif without if"
+msgstr ""
+
+#: macro.c:830
+#, c-format
+msgid "Repeat %s%d"
+msgstr ""
+
+#: macro.c:843
+msgid "Repeat"
+msgstr ""
+
+#: main.c:355
+msgid "Couldn't load termcap/terminfo entry\n"
+msgstr ""
+
+#: main.c:368 main.c:379 main.c:438 main.c:448 main.c:465
+#, c-format
+msgid "There were errors in '%s'.  Falling back on default.\n"
+msgstr ""
+
+#: main.c:428
+#, c-format
+msgid "Warning: %s is newer than your %s.\n"
+msgstr ""
+
+#: main.c:469
+#, c-format
+msgid "Couldn't open '%s'\n"
+msgstr ""
+
+#: main.c:476
+msgid "rc file has no :main key binding section or no bindings.  Bye.\n"
+msgstr ""
+
+#: main.c:511
+#, c-format
+msgid "Unknown option '%s'\n"
+msgstr ""
+
+#: main.c:662
+#, c-format
+msgid "\\i** Joe's Own Editor v%s ** (%s) ** Copyright %s 2015 **\\i"
+msgstr ""
+
+#: mmenu.c:155
+msgid "No such menu"
+msgstr ""
+
+#: mmenu.c:169
+msgid "Menu: "
+msgstr ""
+
+#: options.c:320
+msgid "Overtype mode"
+msgstr ""
+
+#: options.c:320
+msgid "Insert mode"
+msgstr ""
+
+#: options.c:321
+msgid "Hex edit mode"
+msgstr ""
+
+#: options.c:321
+msgid "Text edit mode"
+msgstr ""
+
+#: options.c:321
+msgid "Hex edit display mode"
+msgstr ""
+
+#: options.c:322
+msgid "Hide ANSI sequences"
+msgstr ""
+
+#: options.c:322
+msgid "Reveal ANSI sequences"
+msgstr ""
+
+#: options.c:322
+msgid "Hide ANSI mode"
+msgstr ""
+
+#: options.c:323
+msgid "Status line context enabled"
+msgstr ""
+
+#: options.c:323
+msgid "Status line context disabled"
+msgstr ""
+
+#: options.c:323
+msgid "Status line context display mode"
+msgstr ""
+
+#: options.c:324
+msgid "Autoindent enabled"
+msgstr ""
+
+#: options.c:324
+msgid "Autoindent disabled"
+msgstr ""
+
+#: options.c:324
+msgid "Autoindent mode"
+msgstr ""
+
+#: options.c:325
+msgid "Wordwrap enabled"
+msgstr ""
+
+#: options.c:325
+msgid "Wordwrap disabled"
+msgstr ""
+
+#: options.c:325
+msgid "Word wrap mode"
+msgstr ""
+
+#: options.c:326
+#, c-format
+msgid "Tab width (%lld): "
+msgstr ""
+
+#: options.c:326
+msgid "Tab width"
+msgstr ""
+
+#: options.c:327
+#, c-format
+msgid "Left margin (%d): "
+msgstr ""
+
+#: options.c:327
+msgid "Left margin "
+msgstr ""
+
+#: options.c:328
+#, c-format
+msgid "Right margin (%d): "
+msgstr ""
+
+#: options.c:328
+msgid "Right margin "
+msgstr ""
+
+#: options.c:329
+msgid "Restore cursor position when files loaded"
+msgstr ""
+
+#: options.c:329
+msgid "Don't restore cursor when files loaded"
+msgstr ""
+
+#: options.c:329
+msgid "Restore cursor mode"
+msgstr ""
+
+#: options.c:330
+msgid "Standard regular expression format"
+msgstr ""
+
+#: options.c:330
+msgid "JOE regular expression format"
+msgstr ""
+
+#: options.c:330
+msgid "Standard or JOE regular expression syntax"
+msgstr ""
+
+#: options.c:331
+msgid "Rectangle mode"
+msgstr ""
+
+#: options.c:331
+msgid "Text-stream mode"
+msgstr ""
+
+#: options.c:331
+msgid "Rectangular region mode"
+msgstr ""
+
+#: options.c:332
+msgid "Search ignores case by default"
+msgstr ""
+
+#: options.c:332
+msgid "Case sensitive search by default"
+msgstr "Case-sensitive search by default"
+
+#: options.c:332
+msgid "Case insensitive search mode "
+msgstr "Case-insensitive search mode "
+
+#: options.c:333
+msgid "Search wraps"
+msgstr ""
+
+#: options.c:333
+msgid "Search doesn't wrap"
+msgstr ""
+
+#: options.c:333
+msgid "Search wraps mode"
+msgstr ""
+
+#: options.c:334
+msgid "Menu explorer mode"
+msgstr ""
+
+#: options.c:334
+msgid "Simple completion mode"
+msgstr ""
+
+#: options.c:335
+msgid "Menu above prompt"
+msgstr ""
+
+#: options.c:335
+msgid "Menu below prompt"
+msgstr ""
+
+#: options.c:335
+msgid "Menu above/below mode"
+msgstr ""
+
+#: options.c:336
+msgid "Tags menu disabled"
+msgstr ""
+
+#: options.c:336
+msgid "Tags menu enabled"
+msgstr ""
+
+#: options.c:336
+msgid "Tags menu mode"
+msgstr ""
+
+#: options.c:337
+msgid "Search prompting on"
+msgstr ""
+
+#: options.c:337
+msgid "Search prompting off"
+msgstr ""
+
+#: options.c:337
+msgid "Search prompting mode"
+msgstr ""
+
+#: options.c:338
+msgid "Jump into menu is on"
+msgstr ""
+
+#: options.c:338
+msgid "Jump into menu is off"
+msgstr ""
+
+#: options.c:338
+msgid "Jump into menu mode"
+msgstr ""
+
+#: options.c:339
+msgid "Autoswap ^KB and ^KK"
+msgstr ""
+
+#: options.c:339
+msgid "Autoswap off "
+msgstr ""
+
+#: options.c:339
+msgid "Autoswap mode "
+msgstr ""
+
+#: options.c:340
+msgid "Indent char %d (SPACE=32, TAB=9, %{abort} to abort): "
+msgstr ""
+
+#: options.c:340
+msgid "Indent char "
+msgstr ""
+
+#: options.c:341
+msgid "Indent step %lld (%{abort} to abort): "
+msgstr ""
+
+#: options.c:341
+msgid "Indent step "
+msgstr ""
+
+#: options.c:342
+msgid "One space after periods for paragraph reformat"
+msgstr "One space after full stops for paragraph reformat"
+
+#: options.c:342
+msgid "Two spaces after periods for paragraph reformat"
+msgstr "Two spaces after full stops for paragraph reformat"
+
+#: options.c:342
+msgid "French spacing mode"
+msgstr ""
+
+#: options.c:343
+msgid "One space after paragraph line"
+msgstr ""
+
+#: options.c:343
+msgid "No spaces after paragraph lines"
+msgstr ""
+
+#: options.c:343
+msgid "Flowed text mode"
+msgstr ""
+
+#: options.c:344
+msgid "Highlighting enabled"
+msgstr ""
+
+#: options.c:344
+msgid "Highlighting disabled"
+msgstr ""
+
+#: options.c:344
+msgid "Syntax highlighting mode"
+msgstr ""
+
+#: options.c:345
+msgid "Inserting spaces when tab key is hit"
+msgstr ""
+
+#: options.c:345
+msgid "Inserting tabs when tab key is hit"
+msgstr ""
+
+#: options.c:345
+msgid "No tabs mode"
+msgstr ""
+
+#: options.c:346
+msgid "Cursor will be recentered on scrolls"
+msgstr "Cursor will be recentred on scrolls"
+
+#: options.c:346
+msgid "Cursor will not be recentered on scroll"
+msgstr "Cursor will not be recentred on scroll"
+
+#: options.c:346
+msgid "Center on scroll mode"
+msgstr "Centre on scroll mode"
+
+#: options.c:347
+#, c-format
+msgid "Columns to scroll left or -1 for 1/2 window (%d): "
+msgstr ""
+
+#: options.c:347
+msgid "Left scroll amount"
+msgstr ""
+
+#: options.c:348
+#, c-format
+msgid "Columns to scroll right or -1 for 1/2 window (%d): "
+msgstr ""
+
+#: options.c:348
+msgid "Right scroll amount"
+msgstr ""
+
+#: options.c:349
+msgid "Automatically detect MS-DOS files"
+msgstr ""
+
+#: options.c:349
+msgid "Do not automatically detect MS-DOS files"
+msgstr ""
+
+#: options.c:349
+msgid "Auto detect CR-LF mode"
+msgstr ""
+
+#: options.c:350
+msgid "Automatically detect indentation"
+msgstr ""
+
+#: options.c:350
+msgid "Do not automatically detect indentation"
+msgstr ""
+
+#: options.c:350
+msgid "Guess indent mode"
+msgstr ""
+
+#: options.c:351
+msgid "Automatically detect non-UTF-8 in UTF-8 locale"
+msgstr ""
+
+#: options.c:351
+msgid "Do not automatically detect non-UTF-8"
+msgstr ""
+
+#: options.c:351
+msgid "Guess non-UTF-8 mode"
+msgstr ""
+
+#: options.c:352
+msgid "Automatically detect UTF-8 in non-UTF-8 locale"
+msgstr ""
+
+#: options.c:352
+msgid "Do not automatically detect UTF-8"
+msgstr ""
+
+#: options.c:352
+msgid "Guess UTF-8 mode"
+msgstr ""
+
+#: options.c:353
+msgid "Automatically detect UTF-16"
+msgstr ""
+
+#: options.c:353
+msgid "Do not automatically detect UTF-16"
+msgstr ""
+
+#: options.c:353
+msgid "Guess UTF-16 mode"
+msgstr ""
+
+#: options.c:354
+msgid "Menu is transposed"
+msgstr ""
+
+#: options.c:354
+msgid "Menus are not transposed"
+msgstr ""
+
+#: options.c:354
+msgid "Transpose menus mode"
+msgstr ""
+
+#: options.c:355
+msgid "CR-LF is line terminator"
+msgstr ""
+
+#: options.c:355
+msgid "LF is line terminator"
+msgstr ""
+
+#: options.c:355
+msgid "CR-LF (MS-DOS) mode"
+msgstr ""
+
+#: options.c:356
+msgid "Line numbers enabled"
+msgstr ""
+
+#: options.c:356
+msgid "Line numbers disabled"
+msgstr ""
+
+#: options.c:356
+msgid "Line numbers mode"
+msgstr ""
+
+#: options.c:357
+msgid "Highlighting cursor line"
+msgstr ""
+
+#: options.c:357
+msgid "Not highlighting cursor line"
+msgstr ""
+
+#: options.c:357
+msgid "Highlight cursor line"
+msgstr ""
+
+#: options.c:358
+msgid "Anchored block marking on"
+msgstr ""
+
+#: options.c:358
+msgid "Anchored block marking off"
+msgstr ""
+
+#: options.c:358
+msgid "Region marking mode"
+msgstr ""
+
+#: options.c:359
+msgid "Characters above 127 shown as-is"
+msgstr ""
+
+#: options.c:359
+msgid "Characters above 127 shown in inverse"
+msgstr ""
+
+#: options.c:359
+msgid "Display meta chars as-is mode"
+msgstr ""
+
+#: options.c:360
+msgid "Last line forced to have NL when file saved"
+msgstr ""
+
+#: options.c:360
+msgid "Last line not forced to have NL"
+msgstr ""
+
+#: options.c:360
+msgid "Force last NL mode"
+msgstr ""
+
+#: options.c:361
+msgid "~/.joe_state file will be updated"
+msgstr ""
+
+#: options.c:361
+msgid "~/.joe_state file will not be updated"
+msgstr ""
+
+#: options.c:361
+msgid "Joe_state file mode"
+msgstr ""
+
+#: options.c:362
+msgid "Nobackup enabled"
+msgstr ""
+
+#: options.c:362
+msgid "Nobackup disabled"
+msgstr ""
+
+#: options.c:362
+msgid "No backup mode"
+msgstr ""
+
+#: options.c:363
+msgid "Backup files will not be made"
+msgstr ""
+
+#: options.c:363
+msgid "Backup files will be made"
+msgstr ""
+
+#: options.c:363
+msgid "Disable backups mode"
+msgstr ""
+
+#: options.c:364
+msgid "DEADJOE files will not be made"
+msgstr ""
+
+#: options.c:364
+msgid "DEADJOE files will be made"
+msgstr ""
+
+#: options.c:364
+msgid "Disable DEADJOE mode"
+msgstr ""
+
+#: options.c:365
+msgid "Files will not be locked"
+msgstr ""
+
+#: options.c:365
+msgid "Files will be locked"
+msgstr ""
+
+#: options.c:365
+msgid "Disable locks mode"
+msgstr ""
+
+#: options.c:366
+msgid "No file modification time check"
+msgstr ""
+
+#: options.c:366
+msgid "File modification time checking enabled"
+msgstr ""
+
+#: options.c:366
+msgid "Disable mtime check mode"
+msgstr ""
+
+#: options.c:367
+msgid "No current dir"
+msgstr ""
+
+#: options.c:367
+msgid "Current dir enabled"
+msgstr ""
+
+#: options.c:367
+msgid "Disable current dir "
+msgstr ""
+
+#: options.c:368
+msgid "Hardlinks will be broken"
+msgstr ""
+
+#: options.c:368
+msgid "Hardlinks not broken"
+msgstr ""
+
+#: options.c:368
+msgid "Break hard links "
+msgstr ""
+
+#: options.c:369
+msgid "Links will be broken"
+msgstr ""
+
+#: options.c:369
+msgid "Links not broken"
+msgstr ""
+
+#: options.c:369
+msgid "Break links "
+msgstr ""
+
+#: options.c:370
+msgid "Highlighting turned off after block operations"
+msgstr ""
+
+#: options.c:370
+msgid "Highlighting not turned off after block operations"
+msgstr ""
+
+#: options.c:370
+msgid "Auto unmark "
+msgstr ""
+
+#: options.c:371
+msgid "Prompt for filename in save & exit command"
+msgstr ""
+
+#: options.c:371
+msgid "Don't prompt for filename in save & exit command"
+msgstr ""
+
+#: options.c:371
+msgid "Exit ask "
+msgstr ""
+
+#: options.c:372
+msgid "Warning bell enabled"
+msgstr ""
+
+#: options.c:372
+msgid "Warning bell disabled"
+msgstr ""
+
+#: options.c:372
+msgid "Beeps "
+msgstr ""
+
+#: options.c:373
+msgid "Top-most status line disabled"
+msgstr ""
+
+#: options.c:373
+msgid "Top-most status line enabled"
+msgstr ""
+
+#: options.c:373
+msgid "Disable status line "
+msgstr ""
+
+#: options.c:374
+msgid "Status line updated constantly"
+msgstr ""
+
+#: options.c:374
+msgid "Status line updated once/sec"
+msgstr ""
+
+#: options.c:374
+msgid "Fast status line "
+msgstr ""
+
+#: options.c:375
+#, c-format
+msgid "Lines to keep for PgUp/PgDn or -1 for 1/2 window (%d): "
+msgstr ""
+
+#: options.c:375
+msgid "No. PgUp/PgDn lines "
+msgstr ""
+
+#: options.c:376
+msgid "No. undo records to keep, or (0 for infinite): "
+msgstr ""
+
+#: options.c:376
+msgid "No. undo records "
+msgstr ""
+
+#: options.c:377
+msgid "Start search after a search repeats previous search"
+msgstr ""
+
+#: options.c:377
+msgid "Start search always starts a new search"
+msgstr ""
+
+#: options.c:377
+msgid "Continued search "
+msgstr ""
+
+#: options.c:378
+msgid "Full editing"
+msgstr ""
+
+#: options.c:378
+msgid "Read only "
+msgstr ""
+
+#: options.c:379
+msgid "Smart home key enabled"
+msgstr ""
+
+#: options.c:379
+msgid "Smart home key disabled"
+msgstr ""
+
+#: options.c:379
+msgid "Smart home key "
+msgstr ""
+
+#: options.c:380
+msgid "Smart home goes to indentation first"
+msgstr ""
+
+#: options.c:380
+msgid "Smart home goes home first"
+msgstr ""
+
+#: options.c:380
+msgid "To indent first "
+msgstr ""
+
+#: options.c:381
+msgid "Smart backspace key enabled"
+msgstr ""
+
+#: options.c:381
+msgid "Smart backspace key disabled"
+msgstr ""
+
+#: options.c:381
+msgid "Smart backspace "
+msgstr ""
+
+#: options.c:382
+msgid "Indentation clean up enabled"
+msgstr ""
+
+#: options.c:382
+msgid "Indentation clean up disabled"
+msgstr ""
+
+#: options.c:382
+msgid "Clean up indents "
+msgstr ""
+
+#: options.c:383
+msgid "Picture drawing mode enabled"
+msgstr ""
+
+#: options.c:383
+msgid "Picture drawing mode disabled"
+msgstr ""
+
+#: options.c:383
+msgid "Picture mode "
+msgstr ""
+
+#: options.c:384
+#, c-format
+msgid "Backup files stored in (%s): "
+msgstr ""
+
+#: options.c:384
+msgid "Path to backup files "
+msgstr ""
+
+#: options.c:385
+#, c-format
+msgid "Syntax debug info %d (0=off, 1=state, 2=recolor, 3=both)"
+msgstr "Syntax debug info %d (0=off, 1=state, 2=recolour, 3=both)"
+
+#: options.c:385
+msgid "Syntax debug mode"
+msgstr ""
+
+#: options.c:386
+msgid "Select syntax (%{abort} to abort): "
+msgstr ""
+
+#: options.c:386
+msgid "Syntax"
+msgstr ""
+
+#: options.c:387
+msgid "Select color scheme (%{abort} to abort): "
+msgstr "Select colour scheme (%{abort} to abort): "
+
+#: options.c:387
+msgid "Scheme "
+msgstr ""
+
+#: options.c:388
+msgid "Select file character set (%{abort} to abort): "
+msgstr ""
+
+#: options.c:388
+msgid "Encoding "
+msgstr ""
+
+#: options.c:389
+msgid "Select file type (%{abort} to abort): "
+msgstr ""
+
+#: options.c:389
+msgid "File type "
+msgstr ""
+
+#: options.c:390
+msgid "Highlighter context enabled"
+msgstr ""
+
+#: options.c:390
+msgid "Highlighter context disabled"
+msgstr ""
+
+#: options.c:390
+msgid "^G uses highlighter context "
+msgstr ""
+
+#: options.c:391
+msgid "Single quoting enabled"
+msgstr ""
+
+#: options.c:391
+msgid "Single quoting disabled"
+msgstr ""
+
+#: options.c:391
+msgid "^G ignores '... ' "
+msgstr ""
+
+#: options.c:392
+msgid "Double quoting disabled"
+msgstr ""
+
+#: options.c:392
+msgid "Double quoting enabled"
+msgstr ""
+
+#: options.c:392
+msgid "^G ignores \"... \" "
+msgstr ""
+
+#: options.c:393
+msgid "/* comments enabled"
+msgstr ""
+
+#: options.c:393
+msgid "/* comments disabled"
+msgstr ""
+
+#: options.c:393
+msgid "^G ignores /*...*/ "
+msgstr ""
+
+#: options.c:394
+msgid "// comments enabled"
+msgstr ""
+
+#: options.c:394
+msgid "// comments disabled"
+msgstr ""
+
+#: options.c:394
+msgid "^G ignores //... "
+msgstr ""
+
+#: options.c:395 options.c:396
+msgid "# comments enabled"
+msgstr ""
+
+#: options.c:395 options.c:396
+msgid "# comments disabled"
+msgstr ""
+
+#: options.c:395 options.c:396
+msgid "^G ignores #... "
+msgstr ""
+
+#: options.c:397
+msgid "-- comments enabled"
+msgstr ""
+
+#: options.c:397
+msgid "-- comments disabled"
+msgstr ""
+
+#: options.c:397
+msgid "^G ignores --... "
+msgstr ""
+
+#: options.c:398
+msgid "; comments enabled"
+msgstr ""
+
+#: options.c:398
+msgid "; comments disabled"
+msgstr ""
+
+#: options.c:398
+msgid "^G ignores ;... "
+msgstr ""
+
+#: options.c:399
+#, c-format
+msgid "% comments enabled"
+msgstr ""
+
+#: options.c:399
+#, c-format
+msgid "% comments disabled"
+msgstr ""
+
+#: options.c:399
+msgid "^G ignores %... "
+msgstr ""
+
+#: options.c:400
+#, c-format
+msgid "Text delimiters (%s): "
+msgstr ""
+
+#: options.c:400
+msgid "Text delimiters "
+msgstr ""
+
+#: options.c:401
+#, c-format
+msgid "Language (%s): "
+msgstr ""
+
+#: options.c:401
+msgid "Language "
+msgstr ""
+
+#: options.c:402
+#, c-format
+msgid "Characters which can indent paragraphs (%s): "
+msgstr ""
+
+#: options.c:402
+msgid "Paragraph indent chars "
+msgstr ""
+
+#: options.c:403
+#, c-format
+msgid "Characters which begin non-paragraph lines (%s): "
+msgstr ""
+
+#: options.c:403
+msgid "Non-paragraph chars "
+msgstr ""
+
+#: options.c:404
+msgid "Clicking can move the cursor past end of line"
+msgstr ""
+
+#: options.c:404
+msgid "Clicking past end of line moves cursor to the end"
+msgstr ""
+
+#: options.c:404
+msgid "Click past end "
+msgstr ""
+
+#: options.c:405
+msgid "Mouse action is done with the right button"
+msgstr ""
+
+#: options.c:405
+msgid "Mouse action is done with the left button"
+msgstr ""
+
+#: options.c:405
+msgid "Right button "
+msgstr ""
+
+#: options.c:406
+msgid "Suppress startup notice"
+msgstr ""
+
+#: options.c:407
+msgid "Suppress exit message"
+msgstr ""
+
+#: options.c:408
+msgid "Help is UTF-8"
+msgstr ""
+
+#: options.c:409
+msgid "Disable XON/XOFF"
+msgstr ""
+
+#: options.c:410
+msgid "Orphan extra files"
+msgstr ""
+
+#: options.c:411
+msgid "Start editor with help displayed"
+msgstr ""
+
+#: options.c:412
+msgid "Emit padding NULs"
+msgstr ""
+
+#: options.c:413
+msgid "No. screen lines (if no window size ioctl)"
+msgstr ""
+
+#: options.c:414
+msgid "Baud rate"
+msgstr ""
+
+#: options.c:415
+msgid "No. screen columns (if no window size ioctl)"
+msgstr ""
+
+#: options.c:416
+msgid "No. screen lines to skip"
+msgstr ""
+
+#: options.c:417
+msgid "Suppress tty init sequence"
+msgstr ""
+
+#: options.c:418
+msgid "Bracketed paste mode"
+msgstr ""
+
+#: options.c:419
+msgid "Paste quoting hack"
+msgstr ""
+
+#: options.c:420
+msgid "Suppress history preserving linefeeds"
+msgstr ""
+
+#: options.c:421
+msgid "Enable mouse"
+msgstr ""
+
+#: options.c:422
+msgid "Screen update uses tabs"
+msgstr ""
+
+#: options.c:423
+msgid "Assume terminal supports color"
+msgstr "Assume terminal supports colour"
+
+#: options.c:424
+msgid "Assume terminal supports 256 colors"
+msgstr "Assume terminal supports 256 colours"
+
+#: options.c:425
+msgid "Assume xterm patched for JOE"
+msgstr ""
+
+#: options.c:426
+msgid "Visible whitespace enabled"
+msgstr ""
+
+#: options.c:426
+msgid "Visible whitespace disabled"
+msgstr ""
+
+#: options.c:426
+msgid "Visible whitespace"
+msgstr ""
+
+#: options.c:548
+msgid "No such file type"
+msgstr ""
+
+#: options.c:881 options.c:900 options.c:912 options.c:924
+msgid "Value out of range"
+msgstr ""
+
+#: options.c:958
+msgid "Syntax definition file not found"
+msgstr ""
+
+#: options.c:978
+msgid "Color scheme failed to apply"
+msgstr "Colour scheme failed to apply"
+
+#: options.c:980
+msgid "Color scheme file not found"
+msgstr "Colour scheme file not found"
+
+#: options.c:1120
+msgid "UTF-8 encoding not allowed with hexadecimal windows"
+msgstr ""
+
+#: options.c:1128
+#, c-format
+msgid "%s encoding assumed for this file"
+msgstr ""
+
+#: options.c:1131
+msgid "Character set not found"
+msgstr ""
+
+#: options.c:1450
+msgid "No such option"
+msgstr ""
+
+#: options.c:1465
+msgid "Option: "
+msgstr ""
+
+#: rc.c:16
+msgid "Missing or empty :main keymap\n"
+msgstr ""
+
+#: rc.c:21
+msgid "Missing or empty :prompt keymap\n"
+msgstr ""
+
+#: rc.c:26
+msgid "Missing or empty :query keymap\n"
+msgstr ""
+
+#: rc.c:31
+msgid "Missing or empty :querya keymap\n"
+msgstr ""
+
+#: rc.c:36
+msgid "Missing or empty :querysr keymap\n"
+msgstr ""
+
+#: rc.c:41
+msgid "Missing or empty :shell keymap\n"
+msgstr ""
+
+#: rc.c:45
+msgid "Missing or empty :vtshell keymap\n"
+msgstr ""
+
+#: rc.c:64
+#, c-format
+msgid "%s %d: Unknown command in macro\n"
+msgstr ""
+
+#: rc.c:106
+#, c-format
+msgid "Processing '%s'...\n"
+msgstr ""
+
+#: rc.c:180
+#, c-format
+msgid "%s %d: Unknown option %s\n"
+msgstr ""
+
+#: rc.c:215
+#, c-format
+msgid "%s %d: macro missing from :def\n"
+msgstr ""
+
+#: rc.c:219
+#, c-format
+msgid "%s %d: command name missing from :def\n"
+msgstr ""
+
+#: rc.c:230
+#, c-format
+msgid "%s %d: context name missing from :inherit\n"
+msgstr ""
+
+#: rc.c:234
+#, c-format
+msgid "%s %d: No context selected for :inherit\n"
+msgstr ""
+
+#: rc.c:266
+#, c-format
+msgid "%s %d: Couldn't open %s\n"
+msgstr ""
+
+#: rc.c:274
+#, c-format
+msgid "%s %d: :include missing file name\n"
+msgstr ""
+
+#: rc.c:287
+#, c-format
+msgid "%s %d: No context selected for :delete\n"
+msgstr ""
+
+#: rc.c:298
+#, c-format
+msgid "%s %d: :defmap missing name\n"
+msgstr ""
+
+#: rc.c:323
+#, c-format
+msgid "%s %d: Invalid context name\n"
+msgstr ""
+
+#: rc.c:334
+#, c-format
+msgid "%s %d: No context selected for macro to key-sequence binding\n"
+msgstr ""
+
+#: rc.c:355
+#, c-format
+msgid "%s %d: Bad key sequence '%s'\n"
+msgstr ""
+
+#: rc.c:366
+#, c-format
+msgid "Finished processing %s\n"
+msgstr ""
+
+#: scrn.c:880
+msgid ""
+"Sorry, your terminal can't do absolute cursor positioning.\n"
+"It's broken\n"
+msgstr ""
+
+#: selinux.c:36 selinux.c:84 selinux.c:139
+#, c-format
+msgid "Could not get security context for %s"
+msgstr ""
+
+#: selinux.c:42
+msgid ""
+"\n"
+"Could not get security context for "
+msgstr ""
+
+#: selinux.c:52
+#, c-format
+msgid "Could not set security context for %s"
+msgstr ""
+
+#: selinux.c:91
+#, c-format
+msgid "Could not set default security context for %s"
+msgstr ""
+
+#: selinux.c:112
+msgid "Could not reset default security context"
+msgstr ""
+
+#: selinux.c:144
+#, c-format
+msgid "%s Security Context %s"
+msgstr ""
+
+#: syntax.c:600
+#, c-format
+msgid "%s %d: Class already defined\n"
+msgstr ""
+
+#: syntax.c:611
+#, c-format
+msgid "%s %d: Missing class name\n"
+msgstr ""
+
+#: syntax.c:699
+#, c-format
+msgid "%s %d: Missing parameter name\n"
+msgstr ""
+
+#: syntax.c:715
+#, c-format
+msgid "%s %d: Missing )\n"
+msgstr ""
+
+#: syntax.c:758 syntax.c:760 syntax.c:769 syntax.c:780
+#, c-format
+msgid "%s %d: Missing value for option\n"
+msgstr ""
+
+#: syntax.c:774 syntax.c:922
+#, c-format
+msgid "%s %d: Missing subroutine name\n"
+msgstr ""
+
+#: syntax.c:814 syntax.c:981
+#, c-format
+msgid "%s %d: Missing state name\n"
+msgstr ""
+
+#: syntax.c:816
+#, c-format
+msgid "%s %d: Missing string\n"
+msgstr ""
+
+#: syntax.c:828
+#, c-format
+msgid "%s %d: Unknown option\n"
+msgstr ""
+
+#: syntax.c:901
+#, c-format
+msgid "%s %d: missing parameter for ifdef\n"
+msgstr ""
+
+#: syntax.c:911
+#, c-format
+msgid "%s %d: else with no matching if\n"
+msgstr ""
+
+#: syntax.c:918
+#, c-format
+msgid "%s %d: endif with no matching if\n"
+msgstr ""
+
+#: syntax.c:937
+#, c-format
+msgid "%s %d: Unknown control statement\n"
+msgstr ""
+
+#: syntax.c:940
+#, c-format
+msgid "%s %d: Missing control statement name\n"
+msgstr ""
+
+#: syntax.c:964
+#, c-format
+msgid "%s %d: Unknown class\n"
+msgstr ""
+
+#: syntax.c:975
+#, c-format
+msgid "%s %d: Unknown context\n"
+msgstr ""
+
+#: syntax.c:979
+#, c-format
+msgid "%s %d: Missing color for state definition\n"
+msgstr "%s %d: Missing colour for state definition\n"
+
+#: syntax.c:1006
+#, c-format
+msgid "%s %d: Bad string\n"
+msgstr ""
+
+#: syntax.c:1017
+#, c-format
+msgid "%s %d: Missing jump\n"
+msgstr ""
+
+#: syntax.c:1019
+#, c-format
+msgid "%s %d: No state\n"
+msgstr ""
+
+#: syntax.c:1021
+#, c-format
+msgid "%s %d: Unknown character\n"
+msgstr ""
+
+#: syntax.c:1028
+#, c-format
+msgid "%s %d: ifdef with no matching endif\n"
+msgstr ""
+
+#: tab.c:234 tab.c:294
+msgid "Couldn't read directory "
+msgstr ""
+
+#: termcap.c:224
+msgid "Couldn't load termcap entry.  Using ansi default\n"
+msgstr ""
+
+#: termcap.c:245
+#, c-format
+msgid "termcap: %s is out of date\n"
+msgstr ""
+
+#: tty.c:345
+msgid "Couldn't open /dev/tty\n"
+msgstr ""
+
+#: tty.c:822
+msgid "You are at the command shell.  Type 'exit' to return\n"
+msgstr ""
+
+#: tty.c:888
+msgid "You have suspended the program.  Type 'fg' to return\n"
+msgstr ""
+
+#: tty.c:1268
+#, c-format
+msgid "Couldn't execute shell '%s'\n"
+msgstr ""
+
+#: tw.c:354
+msgid "Unnamed"
+msgstr ""
+
+#: tw.c:360
+msgid "(Modified)"
+msgstr ""
+
+#: tw.c:364
+msgid "(Read only)"
+msgstr ""
+
+#: tw.c:539
+msgid "*SHELL*"
+msgstr ""
+
+#: tw.c:543
+#, c-format
+msgid "(Macro %d recording...)"
+msgstr ""
+
+#: tw.c:844 tw.c:872 ufile.c:1203 ufile.c:1414
+msgid "Lose changes to this file (y,n,%{abort})? "
+msgstr ""
+
+#: ublock.c:291
+msgid "Selection cleared."
+msgstr ""
+
+#: ublock.c:299 ublock.c:316
+msgid "Selection started."
+msgstr ""
+
+#: ublock.c:440 ublock.c:530 ublock.c:590 ublock.c:1122 ublock.c:1158
+#: ublock.c:1331 ufile.c:436 umath.c:317 undo.c:480
+msgid "No block"
+msgstr ""
+
+#: ublock.c:938 ublock.c:1072
+msgid "Selected lines not properly indented"
+msgstr ""
+
+#: ublock.c:1166 ublock.c:1170
+msgid "Couldn't create pipe"
+msgstr ""
+
+#: ublock.c:1315 ushell.c:209
+msgid "Sorry, no sub-processes in DOS (yet)"
+msgstr ""
+
+#: ublock.c:1320
+msgid "Command to filter block through (%{abort} to abort): "
+msgstr ""
+
+#: ublock.c:1325
+msgid "Command to filter file through (%{abort} to abort): "
+msgstr ""
+
+#: uedit.c:1450
+msgid "Invalid line number"
+msgstr ""
+
+#: uedit.c:1459
+msgid "Go to line (%{abort} to abort): "
+msgstr ""
+
+#: uedit.c:1491
+msgid "Invalid column number"
+msgstr ""
+
+#: uedit.c:1500
+msgid "Go to column (%{abort} to abort): "
+msgstr ""
+
+#: uedit.c:1532
+msgid "Invalid byte number"
+msgstr ""
+
+#: uedit.c:1541
+msgid "Go to byte (%{abort} to abort): "
+msgstr ""
+
+#: uedit.c:2037
+msgid "Unicode (ISO-10646) character in hex (%{abort} to abort): "
+msgstr ""
+
+#: uedit.c:2164
+msgid "Ctrl- (or 0-9 for dec. ascii, x for hex, or o for octal)"
+msgstr ""
+
+#: uedit.c:2238
+msgid "Quote"
+msgstr ""
+
+#: uedit.c:2311
+#, c-format
+msgid "Mark %d set"
+msgstr ""
+
+#: uedit.c:2325
+msgid "Set mark (0-9):"
+msgstr ""
+
+#: uedit.c:2345
+#, c-format
+msgid "Mark %d not set"
+msgstr ""
+
+#: uedit.c:2358
+msgid "Goto bookmark (0-9):"
+msgstr ""
+
+#: uedit.c:2392 usearch.c:1219 utag.c:62
+msgid "Not found"
+msgstr ""
+
+#: uedit.c:2408
+msgid "Forward to char: "
+msgstr ""
+
+#: uedit.c:2419
+msgid "Backward to char: "
+msgstr ""
+
+#: uedit.c:2439
+msgid "Message (%{abort} to abort): "
+msgstr ""
+
+#: uedit.c:2486
+msgid "Insert (%{abort} to abort): "
+msgstr ""
+
+#: uerror.c:415 uerror.c:448 uerror.c:464
+#, c-format
+msgid "%d messages found"
+msgstr ""
+
+#: uerror.c:417 uerror.c:450 uerror.c:466
+msgid "No messages found"
+msgstr ""
+
+#: uerror.c:428 uerror.c:499
+msgid "No messages"
+msgstr ""
+
+#: uerror.c:432
+#, c-format
+msgid "%d messages cleared"
+msgstr ""
+
+#: uerror.c:607 uerror.c:620
+msgid "No more errors"
+msgstr ""
+
+#: ufile.c:34
+msgid "(Unnamed)"
+msgstr ""
+
+#: ufile.c:39 ufile.c:46
+#, c-format
+msgid "File %s saved"
+msgstr ""
+
+#: ufile.c:41 ufile.c:44
+#, c-format
+msgid "File %s not saved"
+msgstr ""
+
+#: ufile.c:48
+#, c-format
+msgid "File %s not changed so no update needed"
+msgstr ""
+
+#: ufile.c:68
+msgid "Some files have not been saved."
+msgstr ""
+
+#: ufile.c:70
+msgid "All modified files have been saved."
+msgstr ""
+
+#: ufile.c:72
+msgid "No modified files, so no updates needed."
+msgstr ""
+
+#: ufile.c:110
+msgid "System (%{abort} to abort): "
+msgstr ""
+
+#: ufile.c:276
+msgid "|yes|yY"
+msgstr ""
+
+#: ufile.c:277
+msgid "|no|nN"
+msgstr ""
+
+#: ufile.c:308
+msgid "Couldn't make backup file... file not saved"
+msgstr ""
+
+#: ufile.c:320
+msgid "Could not make backup file.  Save anyway (y,n,%{abort})? "
+msgstr ""
+
+#: ufile.c:410 ufile.c:426
+#, c-format
+msgid "Block written to file %s"
+msgstr ""
+
+#: ufile.c:495
+msgid "File exists. Overwrite (y,n,%{abort})? "
+msgstr ""
+
+#: ufile.c:502
+msgid "File on disk is newer. Overwrite (y,n,%{abort})? "
+msgstr ""
+
+#: ufile.c:519 ufile.c:1087 ufile.c:1289
+msgid "Name of file to save (%{help} for help): "
+msgstr ""
+
+#: ufile.c:551
+msgid "Name of file to write (%{help} for help): "
+msgstr ""
+
+#: ufile.c:686
+msgid "Load original file from disk (y,n,%{abort})? "
+msgstr ""
+
+#: ufile.c:725
+#, c-format
+msgid "Directory prefix set to %s"
+msgstr ""
+
+#: ufile.c:734
+msgid "Can't replace modified file"
+msgstr ""
+
+#: ufile.c:743
+msgid "Name of file to edit (%{help} for help): "
+msgstr ""
+
+#: ufile.c:754
+msgid "Set current directory (%{abort} to abort): "
+msgstr ""
+
+#: ufile.c:769 ufile.c:1269
+msgid "Name of buffer to edit (%{abort} to abort): "
+msgstr ""
+
+#: ufile.c:918 ufile.c:927
+msgid "Name of scratch buffer to edit (%{abort} to abort): "
+msgstr ""
+
+#: ufile.c:1045
+msgid "Name of file to insert (%{help} for help): "
+msgstr ""
+
+#: ufile.c:1123
+msgid "Save changes to this file (y,n,%{abort})? "
+msgstr ""
+
+#: ufile.c:1324
+msgid "File %s has been modified.  Save it (y,n,%{abort})? "
+msgstr ""
+
+#: ufile.c:1401
+msgid "File reloaded"
+msgstr ""
+
+#: ufile.c:1410
+msgid "Can only reload plain files"
+msgstr ""
+
+#: ufile.c:1444
+#, c-format
+msgid "%d files reloaded"
+msgstr ""
+
+#: uisrch.c:262
+msgid "I-find: "
+msgstr ""
+
+#: umath.c:45
+msgid "Float point exception"
+msgstr ""
+
+#: umath.c:219 umath.c:334 umath.c:353
+msgid "Missing )"
+msgstr ""
+
+#: umath.c:230
+msgid "Syntax error in macro"
+msgstr ""
+
+#: umath.c:235
+msgid "Missing ("
+msgstr ""
+
+#: umath.c:273 umath.c:279 umath.c:286 umath.c:294 umath.c:303 umath.c:756
+#: umath.c:794 umath.c:832 umath.c:870 umath.c:908 umath.c:946 umath.c:984
+#: umath.c:1022
+msgid "No numbers in block"
+msgstr ""
+
+#: umath.c:359
+msgid "Called object is not a function"
+msgstr ""
+
+#: umath.c:373
+msgid "Factorial can only take positive integers"
+msgstr ""
+
+#: umath.c:471
+msgid "Left side of = is not an l-value"
+msgstr ""
+
+#: umath.c:485
+msgid "Recursion depth exceeded"
+msgstr ""
+
+#: umath.c:506
+msgid "Extra junk after end of expr"
+msgstr ""
+
+#: undo.c:463
+msgid "Modified flag cleared"
+msgstr ""
+
+#: usearch.c:315 usearch.c:379
+msgid "Wrapped"
+msgstr ""
+
+#: usearch.c:704
+msgid "|all files|aA"
+msgstr ""
+
+#: usearch.c:705
+msgid "|error list files|eE"
+msgstr ""
+
+#: usearch.c:706
+msgid "|search and replace|rR"
+msgstr ""
+
+#: usearch.c:707
+msgid "|backwards|bB"
+msgstr ""
+
+#: usearch.c:708
+msgid "|ignore case|iI"
+msgstr ""
+
+#: usearch.c:709
+msgid "|restrict to highlighted block|kK"
+msgstr ""
+
+#: usearch.c:710
+msgid "|don't ignore case|sS"
+msgstr ""
+
+#: usearch.c:711
+msgid "|wrap|wW"
+msgstr ""
+
+#: usearch.c:712
+msgid "|don't wrap|nN"
+msgstr ""
+
+#: usearch.c:713
+msgid "|regex|xX"
+msgstr ""
+
+#: usearch.c:714
+msgid "|no regex|yY"
+msgstr ""
+
+#: usearch.c:715
+msgid "|regex_debug|v"
+msgstr ""
+
+#: usearch.c:767
+msgid "Replace with (%{help} for help): "
+msgstr ""
+
+#: usearch.c:784
+msgid "case (S)ensitive (R)eplace (B)ackwards Bloc(K) (%{help} for help): "
+msgstr ""
+
+#: usearch.c:786
+msgid "(I)gnore (R)eplace (B)ackwards Bloc(K) (%{help} for help): "
+msgstr ""
+
+#: usearch.c:878
+msgid "Find (%{help} for help) [%s]: "
+msgstr ""
+
+#: usearch.c:880
+msgid "Find (%{help} for help): "
+msgstr ""
+
+#: usearch.c:1017
+msgid "|rest of file|rR"
+msgstr ""
+
+#: usearch.c:1018
+msgid "|backup|bB"
+msgstr ""
+
+#: usearch.c:1053
+msgid "Replace (Y)es (N)o (R)est (B)ackup (%{abort} to abort)?"
+msgstr ""
+
+#: usearch.c:1128
+msgid "Character set of buffer does not match character set of search string"
+msgstr ""
+
+#: usearch.c:1217
+msgid "Not found (search restricted to marked block)"
+msgstr ""
+
+#: usearch.c:1224
+msgid "Infinite loop aborted: your search repeatedly matched same place"
+msgstr ""
+
+#: ushell.c:222
+msgid "Program already running in this window"
+msgstr ""
+
+#: ushell.c:250
+msgid "No ptys available"
+msgstr ""
+
+#: ushell.c:256
+msgid "Write failed when writing first command to shell"
+msgstr ""
+
+#: ushell.c:280
+msgid "\"SHELL\" environment variable not defined or exported"
+msgstr ""
+
+#: ushell.c:299
+msgid ":vtshell keymap is missing"
+msgstr ""
+
+#: ushell.c:312
+msgid ":shell keymap is missing"
+msgstr ""
+
+#: ushell.c:343
+msgid "Program to run: "
+msgstr ""
+
+#: ushell.c:389
+msgid "Build command: "
+msgstr ""
+
+#: ushell.c:398
+msgid "Enter build command (for example, 'make'): "
+msgstr ""
+
+#: ushell.c:415
+msgid "Grep command: "
+msgstr ""
+
+#: ushell.c:424
+msgid "Enter grep command (for example, 'grep -n foo *.c'): "
+msgstr ""
+
+#: ushell.c:457
+msgid "Kill program (y,n,%{abort})?"
+msgstr ""
+
+#: utag.c:77
+msgid "Last match"
+msgstr ""
+
+#: utag.c:79
+msgid "There are more matches"
+msgstr ""
+
+#: utag.c:199
+msgid "Couldn't open tags file"
+msgstr ""
+
+#: utag.c:513
+msgid "Tag search: "
+msgstr ""
+
+#: vfile.c:182
+msgid "vfile: out of memory\n"
+msgstr ""
+
+#: vfile.c:243
+#, c-format
+msgid "Couldn't open file '%s'\n"
+msgstr ""
+
+#: w.c:866
+msgid "There are no messages"
+msgstr ""
