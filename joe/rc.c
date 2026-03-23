@@ -329,7 +329,7 @@ int procrc(CAP *cap, JFILE *fd, char *name)
 
 				if (current_menu) {
 					/* Add menu entry */
-					add_menu_entry(current_menu, buf + x, m);
+					add_menu_entry(current_menu, joe_gettext(buf + x), m);
 				} else {
 					/* Add binding to context */
 					if (kadd(cap, context, buf + x, m) == -1) {

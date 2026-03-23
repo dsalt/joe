@@ -23,3 +23,5 @@ charmaps/klingon
 /depcomp
 /install-sh
 /missing
+
+po/joerc.for-po

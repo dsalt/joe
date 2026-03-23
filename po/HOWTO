@@ -1,11 +1,10 @@
 When JOE is released:
 
 	Create a new joe.pot file with
-		xgettext -k_ *.c *.h
-		mv messages.po ../po/joe.pot
+		make -C po joe.pot-update
 
-	Merge into each existing .po file with
-		msgmerge -U de.po joe.pot
+Merging into each existing .po file will happen automatically on running
+"make" or "make -C po".
 
 To create a translation for JOE:
 
@@ -25,6 +24,9 @@ To create a translation for JOE:
   It may be difficult to figure out the meaning of some strings- a good
   idea is to look at the referenced source code or ask a question
   in the joe-editor-general@lists.sourceforge.net mailing list.
+
+  NOTE: "po/joerc.for-po" is really rc/joerc.in.  It just gets processed in
+  order that xgettext can ingest the menu labels.
 
 - Verify the .po file with:
 
