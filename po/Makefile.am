@@ -7,6 +7,8 @@ EXTRA_DIST = $(data_lang_DATA)
 XGETTEXT = xgettext
 MSGMERGE_UPDATE = msgmerge --update
 
+CLEANFILES = joerc.for-po
+
 all: $(data_lang_DATA)
 
 AM_V_XGETTEXT = $(am__v_XGETTEXT_@AM_V@)
@@ -23,7 +25,7 @@ joe.pot-update: joerc.for-po
 		--package-name=joe \
 		--package-version="`sed -re 's/^AC_INIT\(\[joe],\[(.*)]\)$$/\1/; t; d' $(top_srcdir)/configure.ac`" \
 		--msgid-bugs-address=https://github.com/joe-editor/joe/issues \
-		$(foreach file,$(wildcard ../joe/*.c ../joe/*.h),$(patsubst ../%,%,$(file)))
+		$(foreach file,$(wildcard ../joe/*.c ../joe/*.h),$(patsubst ../%,%,$(file))) $(subdir)/joerc.for-po
 	$(AM_V_at)mv joe.po $(srcdir)/joe.pot
 
 $(srcdir)/joe.pot:
@@ -43,3 +45,11 @@ $(data_lang_DATA): $(srcdir)/joe.pot $(srcdir)/joerc.sed
 	echo "*** File $$lang.po does not exist." >&2; \
 	echo "*** If you are a translator, you can create it through 'msginit'." >&2; \
 	exit 1
+
+# this script marks up a copy of joerc with _(…)
+joerc.for-po: $(srcdir)/joe.pot
+	@if ! $(AM_V_P); then echo "  SED     " $@; fi
+	$(AM_V_at)LANG=C sed -rf $(srcdir)/joerc.sed $(top_srcdir)/rc/joerc.in > joerc.for-po
+
+# we can't have joerc.for-po lying around on error
+.DELETE_ON_ERROR:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: joe 4.7\n"
 "Report-Msgid-Bugs-To: https://github.com/joe-editor/joe/issues\n"
-"POT-Creation-Date: 2026-03-27 15:07+0000\n"
+"POT-Creation-Date: 2026-03-27 15:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2119,4 +2119,692 @@ msgstr ""
 
 #: joe/w.c:866
 msgid "There are no messages"
+msgstr ""
+
+#: po/joerc.for-po:401
+msgid "T Overtype %Zoverwrite%"
+msgstr ""
+
+#: po/joerc.for-po:402
+msgid "' Hex edit mode"
+msgstr ""
+
+#: po/joerc.for-po:403
+msgid "I Autoindent %Zautoindent%"
+msgstr ""
+
+#: po/joerc.for-po:404
+msgid "W Word wrap %Zwordwrap%"
+msgstr ""
+
+#: po/joerc.for-po:405
+msgid "D Tab width %Ztab%"
+msgstr ""
+
+#: po/joerc.for-po:406
+msgid "L Left margin %Zlmargin%"
+msgstr ""
+
+#: po/joerc.for-po:407
+msgid "R Right margin %Zrmargin%"
+msgstr ""
+
+#: po/joerc.for-po:408
+msgid "X Column mode %Zsquare%"
+msgstr ""
+
+#: po/joerc.for-po:409
+msgid "% % Indent char %Zindentc%"
+msgstr ""
+
+#: po/joerc.for-po:410
+msgid "% % Indent step %Zistep%"
+msgstr ""
+
+#: po/joerc.for-po:411
+msgid "= Indent select"
+msgstr ""
+
+#: po/joerc.for-po:412
+msgid "H Highlighting %Zhighlight%"
+msgstr ""
+
+#: po/joerc.for-po:413
+msgid "% % Show whitespace %Zvisiblews%"
+msgstr ""
+
+#: po/joerc.for-po:414
+msgid "Z CR-LF/MS-DOS %Zcrlf%"
+msgstr ""
+
+#: po/joerc.for-po:415
+msgid "N Line numbers %Zlinums%"
+msgstr ""
+
+#: po/joerc.for-po:416
+msgid "U Highlight line %Zhiline%"
+msgstr ""
+
+#: po/joerc.for-po:417
+msgid "B Beep %Zbeep%"
+msgstr ""
+
+#: po/joerc.for-po:418
+msgid "O Read only %Zrdonly%"
+msgstr ""
+
+#: po/joerc.for-po:419
+msgid "Y Syntax"
+msgstr ""
+
+#: po/joerc.for-po:420
+msgid "S Color scheme"
+msgstr ""
+
+#: po/joerc.for-po:421
+msgid "E Encoding"
+msgstr ""
+
+#: po/joerc.for-po:422
+msgid "% % Meta chars as-is"
+msgstr ""
+
+#: po/joerc.for-po:423
+msgid "V Language"
+msgstr ""
+
+#: po/joerc.for-po:424
+msgid "P picture %Zpicture%"
+msgstr ""
+
+#: po/joerc.for-po:425
+msgid "F File type [%Ztype%]"
+msgstr ""
+
+#: po/joerc.for-po:426
+msgid "C Context %Ztitle%"
+msgstr ""
+
+#: po/joerc.for-po:427
+msgid "  % % More options..."
+msgstr ""
+
+#: po/joerc.for-po:430
+msgid "% % ^G options"
+msgstr ""
+
+#: po/joerc.for-po:431
+msgid "% % search options"
+msgstr ""
+
+#: po/joerc.for-po:432
+msgid "% % paragraph options"
+msgstr ""
+
+#: po/joerc.for-po:433
+msgid "% % file options"
+msgstr ""
+
+#: po/joerc.for-po:434
+msgid "% % menu options"
+msgstr ""
+
+#: po/joerc.for-po:435
+msgid "% % global options"
+msgstr ""
+
+#: po/joerc.for-po:436
+msgid "% % cursor options"
+msgstr ""
+
+#: po/joerc.for-po:437
+msgid "% % marking options"
+msgstr ""
+
+#: po/joerc.for-po:438
+msgid "% % tab/indent options"
+msgstr ""
+
+#: po/joerc.for-po:439
+msgid "% % debug options"
+msgstr ""
+
+#: po/joerc.for-po:442
+msgid "Indent step = 1, Indent character = 32"
+msgstr ""
+
+#: po/joerc.for-po:442
+msgid "1 Space"
+msgstr ""
+
+#: po/joerc.for-po:443
+msgid "Indent step = 2, Indent character = 32"
+msgstr ""
+
+#: po/joerc.for-po:443
+msgid "2 Spaces"
+msgstr ""
+
+#: po/joerc.for-po:444
+msgid "Indent step = 3, Indent character = 32"
+msgstr ""
+
+#: po/joerc.for-po:444
+msgid "3 Spaces"
+msgstr ""
+
+#: po/joerc.for-po:445
+msgid "Indent step = 4, Indent character = 32"
+msgstr ""
+
+#: po/joerc.for-po:445
+msgid "4 Spaces"
+msgstr ""
+
+#: po/joerc.for-po:446
+msgid "Indent step = 5, Indent character = 32"
+msgstr ""
+
+#: po/joerc.for-po:446
+msgid "5 Spaces"
+msgstr ""
+
+#: po/joerc.for-po:447
+msgid "Indent step = 8, Indent character = 32"
+msgstr ""
+
+#: po/joerc.for-po:447
+msgid "8 Spaces"
+msgstr ""
+
+#: po/joerc.for-po:448
+msgid "Indent step = 10, Indent character = 32"
+msgstr ""
+
+#: po/joerc.for-po:448
+msgid "0 Ten"
+msgstr ""
+
+#: po/joerc.for-po:449
+msgid "Indent step = 1, Indent character = 9"
+msgstr ""
+
+#: po/joerc.for-po:449
+msgid "T Tab"
+msgstr ""
+
+#: po/joerc.for-po:452
+msgid "% % Menu explorer %Zmenu_explorer%"
+msgstr ""
+
+#: po/joerc.for-po:453
+msgid "% % Menu position %Zmenu_above%"
+msgstr ""
+
+#: po/joerc.for-po:454
+msgid "% % Jump into menu %Zmenu_jump%"
+msgstr ""
+
+#: po/joerc.for-po:455
+msgid "% % Transpose menus %Ztranspose%"
+msgstr ""
+
+#: po/joerc.for-po:458
+msgid "% % ^G uses highlighter context %Zhighlighter_context%"
+msgstr ""
+
+#: po/joerc.for-po:459
+msgid "% % ^G ignores '...' %Zsingle_quoted%"
+msgstr ""
+
+#: po/joerc.for-po:460
+msgid "% % ^G no ignore "
+msgstr ""
+
+#: po/joerc.for-po:461
+msgid "% % ^G ignores /*...*/ %Zc_comment%"
+msgstr ""
+
+#: po/joerc.for-po:462
+msgid "% % ^G ignores //... %Zcpp_comment%"
+msgstr ""
+
+#: po/joerc.for-po:463
+msgid "% % ^G ignores #... %Zhash_comment%"
+msgstr ""
+
+#: po/joerc.for-po:464
+msgid "% % ^G ignores --... %Zvhdl_comment%"
+msgstr ""
+
+#: po/joerc.for-po:465
+msgid "% % ^G ignores ;... %Zsemi_comment%"
+msgstr ""
+
+#: po/joerc.for-po:470
+msgid "% % Case insensitivity %Zicase%"
+msgstr ""
+
+#: po/joerc.for-po:471
+msgid "% % Search wraps %Zwrap%"
+msgstr ""
+
+#: po/joerc.for-po:472
+msgid "% % Search prompting %Zsearch_prompting%"
+msgstr ""
+
+#: po/joerc.for-po:473
+msgid "% % Continued search %Zcsmode%"
+msgstr ""
+
+#: po/joerc.for-po:476
+msgid "% % French spacing %Zfrench%"
+msgstr ""
+
+#: po/joerc.for-po:477
+msgid "% % Flowed text %Zflowed%"
+msgstr ""
+
+#: po/joerc.for-po:478
+msgid "% % Paragraph indent chars %Zcpara%"
+msgstr ""
+
+#: po/joerc.for-po:479
+msgid "% % Not-paragraph chars %Zcnotpara%"
+msgstr ""
+
+#: po/joerc.for-po:482
+msgid "% % Restore cursor %Zrestore%"
+msgstr ""
+
+#: po/joerc.for-po:483
+msgid "% % Auto detect CR-LF %Zguess_crlf%"
+msgstr ""
+
+#: po/joerc.for-po:484
+msgid "% % Guess indent %Zguess_indent%"
+msgstr ""
+
+#: po/joerc.for-po:485
+msgid "% % Guess non-UTF-8 %Zguess_non_utf8%"
+msgstr ""
+
+#: po/joerc.for-po:486
+msgid "% % Guess UTF-8 %Zguess_utf8%"
+msgstr ""
+
+#: po/joerc.for-po:487
+msgid "% % Guess UTF-16 %Zguess_utf16%"
+msgstr ""
+
+#: po/joerc.for-po:488
+msgid "% % Force last NL %Zforce%"
+msgstr ""
+
+#: po/joerc.for-po:489
+msgid "% % No backup %Znobackup%"
+msgstr ""
+
+#: po/joerc.for-po:492
+msgid "% % Disable locks %Znolocks%"
+msgstr ""
+
+#: po/joerc.for-po:493
+msgid "% % Disable backups %Znobackups%"
+msgstr ""
+
+#: po/joerc.for-po:494
+msgid "% % Disable DEADJOE %Znodeadjoe%"
+msgstr ""
+
+#: po/joerc.for-po:495
+msgid "% % Disable mtime check %Znomodcheck%"
+msgstr ""
+
+#: po/joerc.for-po:496
+msgid "% % Disable current dir %Znocurdir%"
+msgstr ""
+
+#: po/joerc.for-po:497
+msgid "% % Exit ask %Zexask%"
+msgstr ""
+
+#: po/joerc.for-po:498
+msgid "% % Disable status line %Znosta%"
+msgstr ""
+
+#: po/joerc.for-po:499
+msgid "% % Fast status line %Zkeepup%"
+msgstr ""
+
+#: po/joerc.for-po:500
+msgid "% % Break hard links %Zbreak_hardlinks%"
+msgstr ""
+
+#: po/joerc.for-po:501
+msgid "% % Break links %Zbreak_links%"
+msgstr ""
+
+#: po/joerc.for-po:502
+msgid "% % Joe_state file %Zjoe_state%"
+msgstr ""
+
+#: po/joerc.for-po:503
+msgid "% % No. undo records %Zundo_keep%"
+msgstr ""
+
+#: po/joerc.for-po:504
+msgid "% % Path to backup files %Zbackpath%"
+msgstr ""
+
+#: po/joerc.for-po:507
+msgid "% % No. PgUp/PgDn lines %Zpg%"
+msgstr ""
+
+#: po/joerc.for-po:508
+msgid "C Center on scroll %Zmid%"
+msgstr ""
+
+#: po/joerc.for-po:509
+msgid "L Columns to scroll left %Zleft%"
+msgstr ""
+
+#: po/joerc.for-po:511
+msgid "% % Click past end %Zfloatmouse%"
+msgstr ""
+
+#: po/joerc.for-po:512
+msgid "% % Right button %Zrtbutton%"
+msgstr ""
+
+#: po/joerc.for-po:515
+msgid "% % Autoswap mode %Zautoswap%"
+msgstr ""
+
+#: po/joerc.for-po:516
+msgid "% % Marking %Zmarking%"
+msgstr ""
+
+#: po/joerc.for-po:517
+msgid "% % Auto unmask %Zlightoff%"
+msgstr ""
+
+#: po/joerc.for-po:520
+msgid "% % Smart home key %Zsmarthome%"
+msgstr ""
+
+#: po/joerc.for-po:521
+msgid "% % Smart backspace %Zsmartbacks%"
+msgstr ""
+
+#: po/joerc.for-po:522
+msgid "% % To indent first %Zindentfirst%"
+msgstr ""
+
+#: po/joerc.for-po:523
+msgid "% % Clean up indents %Zpurify%"
+msgstr ""
+
+#: po/joerc.for-po:524
+msgid "% % No tabs %Zspaces%"
+msgstr ""
+
+#: po/joerc.for-po:527
+msgid "% % Syntax debug off (0)"
+msgstr ""
+
+#: po/joerc.for-po:528
+msgid "% % Syntax debug: states (1)"
+msgstr ""
+
+#: po/joerc.for-po:529
+msgid "% % Syntax debug: recolor (2)"
+msgstr ""
+
+#: po/joerc.for-po:530
+msgid "% % Syntax debug: full (3)"
+msgstr ""
+
+#: po/joerc.for-po:551
+msgid ""
+" \\|\\uREGION\\u        \\|\\uGO TO\\u           \\|\\uGO TO\\u           \\|"
+"\\uDELETE\\u    \\|\\uEXIT\\u       \\|\\uSEARCH\\u    \\| \n"
+" \\|\\b^Arrow\\b Select \\|\\b^Z\\b Prev. word   \\|\\b^U/^V\\b PgUp/PgDn \\|"
+"\\b^D\\b Char.  \\|\\b^KX\\b Save   \\|\\b^KF\\b Find  \\| \n"
+" \\|\\b^KB\\b Begin     \\|\\b^X\\b Next word    \\|\\uMISC\\u            \\|"
+"\\b^Y\\b Line   \\|\\b^C\\b  Abort  \\|\\b^L\\b  Next  \\| \n"
+" \\|\\b^KK\\b End       \\|\\b^KU\\b Top of file \\|\\b^KJ\\b Paragraph   \\|"
+"\\b^W\\b >Word  \\|\\b^KQ\\b All    \\|\\uHELP\\u      \\| \n"
+" \\|\\b^KC\\b Copy      \\|\\b^KV\\b End of file \\|\\b^KA\\b Center line \\|"
+"\\b^O\\b Word<  \\|\\uFILE\\u       \\|\\bEsc .\\b Next\\| \n"
+" \\|\\b^KM\\b Move      \\|\\b^A\\b Beg. of line \\|\\b^K Space\\b Status \\|"
+"\\b^J\\b >Line  \\|\\b^KE\\b Edit   \\|\\bEsc ,\\b Prev\\| \n"
+" \\|\\b^KW\\b File      \\|\\b^E\\b End of line  \\|\\uSPELL\\u           \\|"
+"\\b^[O\\b Line< \\|\\b^KR\\b Insert \\|\\b^KH\\b Off   \\| \n"
+" \\|\\b^KY\\b Delete    \\|\\b^KL\\b To line no. \\|\\bEsc N\\b Word      \\|"
+"\\b^_\\b Undo   \\|\\b^KD\\b Save   \\|\\b^T\\b  Menu  \\| \n"
+" \\|\\b^K/\\b Filter    \\|\\b^G\\b  Matching (  \\|\\bEsc L\\b File      \\|"
+"\\b^^\\b Redo   \\|\\b^K`\\b Revert \\|\\b\\b          \\| \n"
+msgstr ""
+
+#: po/joerc.for-po:563
+msgid ""
+" \\|\\uMACROS\\u         \\|\\uSCROLL\\u           \\|"
+"\\uWINDOW\\u               \\|\\uGO TO\\u      \\|\\uI-SEARCH\\u     \\| \n"
+" \\|\\b^K[ 0-9\\b Record \\|\\bEsc W\\b Up         \\|\\b^KO\\b Open  "
+"\\b^C\\b  Close  \\|\\bEsc B\\b / \\bK\\b  \\|\\b^R\\b Backwards \\| \n"
+" \\|\\b^K]\\b     Stop   \\|\\bEsc Z\\b Down       \\|\\b^KG\\b Grow  "
+"\\b^KT\\b Shrink \\|to \\b^KB\\b/\\b^KK \\b\\|\\b^S\\b Forwards  \\| \n"
+" \\|\\bEsc I\\b   Text   \\|\\bEsc <\\b Left       \\|\\b^KN\\b Next  "
+"\\b^KP\\b Prev.  \\|\\b^P\\b  Up     \\|\\uBOOKMARKS\\u    \\| \n"
+" \\|\\b^K?\\b     Pause  \\|\\bEsc >\\b Right      \\|\\b^KI\\b Show one / "
+"All   \\|\\b^N\\b  Down   \\|\\bEsc 0-9\\b Goto \\| \n"
+" \\|   for prompt  \\|\\uINSERT\\u           \\|\\uSHELL\\u                "
+"\\|\\b^B\\b  Left   \\|\\bEsc Esc\\b Set  \\| \n"
+" \\|\\b^K 0-9\\b  Play   \\|\\b^]\\b Line  \\b^Q\\b Ctrl \\|\\bF1-F4\\b Term "
+"emulator  \\|\\b^F\\b  Right  \\|\\b^K-\\b Auto prev\\| \n"
+" \\|\\b^K\\\\\\b     Repeat \\|\\b^@\\b Space \\b^\\\\\\b Meta \\|\\b^K'\\b "
+"In buffer        \\|           \\|\\b^K=\\b Auto next\\| \n"
+" \\|\\bEsc D\\b   Dump   \\|\\bEsc Y\\b Paste      \\|\\b^KZ\\b Suspend  "
+"\\bEsc !\\b Append \\|      \\|             \\| \n"
+msgstr ""
+
+#: po/joerc.for-po:575
+msgid ""
+" \\|\\uCOMMANDS\\u            \\|\\uCOMPILING\\u                  \\|"
+"\\uQUICK\\u                       \\| \n"
+" \\|\\bEsc X\\b Command prompt\\|\\bEsc C\\b Save modified compile\\|"
+"\\b^G\\b  Find word under cursor  \\| \n"
+" \\|\\bEsc M\\b Calculator    \\|\\bEsc G\\b Grep                 \\|\\b^K;"
+"\\b Tags file search        \\| \n"
+" \\|\\bshowlog\\b Startup log \\|\\bEsc =\\b To next error        \\|\\bEsc "
+"Enter\\b Complete word     \\| \n"
+" \\|\\bupper\\b   Change case \\|\\bEsc -\\b To prev. error       \\|"
+"\\uBUFFER\\u                      \\| \n"
+" \\|\\blower\\b   Change case \\|\\bEsc Space\\b Jump to error    \\|\\bEsc "
+"U\\b Next                  \\| \n"
+" \\|\\bcd\\b      Change dir  \\|\\uINDENT\\u                     \\|\\bEsc "
+"V\\b Previous              \\| \n"
+" \\|\\bkeymap\\b  Change map  \\|\\b^K,\\b Less                   \\|\\bEsc "
+"X bufed\\b Switch          \\| \n"
+" \\|                    \\|\\b^K.\\b More                   "
+"\\|                            \\| \n"
+msgstr ""
+
+#: po/joerc.for-po:591
+msgid ""
+" Search "
+"sequences:                                                            \\| \n"
+"     \\b\\\\^  \\\\$\\b  matches beg./end of line       \\b\\\\.\\b     "
+"match any single char      \\| \n"
+"     \\b\\\\<  \\\\>\\b  matches beg./end of word       \\b\\\\!\\b     "
+"match char or expression   \\| \n"
+"     \\b\\\\(  \\\\)\\b  grouping                       \\b\\\\|\\b     "
+"match left or right         \\| \n"
+"     \\b\\\\[a-z]\\b  matches one of a set           \\b\\\\y \\\\Y\\b  "
+"short for (.*) / (!*)       \\| \n"
+"     \\b\\\\{1,3}\\b  match 1 - 3 occurrences        \\b\\\\?\\b     match 0 "
+"or 1 occurrence     \\| \n"
+"     \\b\\\\+\\b      match 1 or more occurrences    \\b\\\\*\\b     match 0 "
+"or more occurrences \\| \n"
+"                                                                               \\|\n"
+" \\b^C\\b    to abort                             \\bEsc .\\b  to list of "
+"escape sequences \\|\n"
+msgstr ""
+
+#: po/joerc.for-po:603
+msgid ""
+" Escape sequences: \\| \n"
+"    \\b\\\\x{10fff}\\b Unicode code point    \\b\\\\p{Ll}\\b  Unicode "
+"category \\| \n"
+"    \\b\\\\i\\b / \\b\\\\I\\b   Identifier start      \\b\\\\t\\b  "
+"tab          \\b\\\\e\\b  escape               \\| \n"
+"    \\b\\\\c\\b / \\b\\\\C\\b   Identifier continue   \\b\\\\n\\b  "
+"newline      \\b\\\\r\\b  carriage return      \\| \n"
+"    \\b\\\\d\\b / \\b\\\\D\\b   Digit / Not a digit   \\b\\\\b\\b  "
+"backspace  \\b\\\\xFF\\b  hex character        \\| \n"
+"    \\b\\\\w\\b / \\b\\\\W\\b   Word / Not a word     \\b\\\\a\\b  "
+"alert      \\b\\\\377\\b  octal character      \\| \n"
+"    \\b\\\\s\\b / \\b\\\\S\\b   Space / Not a space   \\b\\\\f\\b  "
+"formfeed     \\b\\\\\\\\\\b  backslash            \\| \n"
+"  \\|\n"
+"  \\|\n"
+msgstr ""
+
+#: po/joerc.for-po:615
+msgid ""
+" Replace "
+"sequences:                                                           \\| \n"
+"     \\b\\\\&\\b      replaced with entire match     \\b\\\\1\\b - \\b9\\b "
+"replaced with Nth group   \\| \n"
+"     \\b\\\\u \\\\l\\b   convert next to upper/lower    \\b\\\\U \\\\L\\b  "
+"case convert until \\b\\\\E\\b     \\| \n"
+"                                                                              \\|\n"
+"                                                                              \\|\n"
+" \\|\n"
+" \\|\n"
+" \\|\n"
+" \\b^C\\b    to abort                             \\bEsc ,\\b to list of "
+"escape sequences \\|\n"
+msgstr ""
+
+#: po/joerc.for-po:627
+msgid ""
+" Search "
+"options:                                                              \\| \n"
+"      \\br\\b Replace      \\bk\\b Restrict search to highlighted "
+"block                   \\| \n"
+"      \\bi\\b Ignore case  \\bb\\b Search backwards instead of "
+"forwards                   \\| \n"
+"                     \\ba\\b Search across all loaded "
+"files                         \\| \n"
+"                     \\be\\b Search across all files in Grep or Compile "
+"error list  \\| \n"
+"  \\bw\\b / \\bn\\b  Allow / prevent wrap to start of "
+"file                                \\| \n"
+"  \\bx\\b / \\by\\b  Search text is standard format / JOE format regular "
+"expression       \\| \n"
+"    \\bnnn\\b  Perform exactly nnn "
+"replacements                                     \\| \n"
+" \\b^C\\b    to abort\n"
+msgstr ""
+
+#: po/joerc.for-po:639
+msgid ""
+"  \\uMATH COMMANDS\\u                  "
+"\\uCONSTANTS\\u                                \\| \n"
+"  \\bhex oct bin\\b display mode       \\b0xff\\b hex "
+"entry                           \\| \n"
+"  \\beng dec\\b engineering / normal   \\b0o77\\b octal "
+"entry                         \\| \n"
+"      \\bins\\b type result into file  \\b0b11\\b binary "
+"entry                        \\| \n"
+"     \\beval\\b evaluate block         \\b3e-4\\b floating point "
+"entry                \\| \n"
+"  2+3\\b:\\bins multiple commands      "
+"\\uVARIABLES\\u                                \\| \n"
+"  \\uOPERATORS\\u                      \\bans\\b  Previous "
+"result                     \\| \n"
+"  \\b! ^  * / %  + -\\b                \\ba=10\\b Assign a "
+"variable                   \\| \n"
+"  \\b< <= > >= == !=  &&  ||  ? :\\b   \\bEsc .\\b for list of "
+"functions              \\| \n"
+msgstr ""
+
+#: po/joerc.for-po:651
+msgid ""
+"  \\uFUNCTIONS\\u                      "
+"\\uCONSTANTS\\u                                \\| \n"
+"  \\bsin cos tab asin acos atan\\b     \\be "
+"pi\\b                                     \\| \n"
+"  \\bsinh cosh tanh asinh acosh "
+"atanh\\b                                        \\| \n"
+"  \\bsqrt cbrt exp ln "
+"log\\b                                                    \\| \n"
+"  \\bint floor ceil "
+"abs\\b                                                      \\| \n"
+"  \\berf erfc j0 j1 y0 "
+"y1\\b                                                    \\| \n"
+"  \\bjoe(..macro..)\\b - runs an editor "
+"macro                                   \\| \n"
+"                                                                              \\| \n"
+"                                 \\bEsc .\\b for "
+"statistics                     \\| \n"
+msgstr ""
+
+#: po/joerc.for-po:663
+msgid ""
+"  \\uMATH "
+"COMMANDS\\u                                                               "
+"\\| \n"
+"  Statistics on region of numbers  Linear regression on region of x y "
+"pairs   \\| \n"
+"  \\bsum\\b  Sum                         \\blr(x)\\b  Estimate y given x     "
+"y=m*x+b      \\| \n"
+"  \\bcnt\\b  Count                       \\brlr(y)\\b Estimate x given "
+"y                  \\| \n"
+"  \\bavg\\b  Mean                        \\bLr rLr\\b Logarithmic regression "
+"y=m*ln(x)+b  \\| \n"
+"    Standard deviation:            \\blR rlR\\b Exponential regression "
+"y=e^(m*x)+b  \\| \n"
+"  \\bdev\\b  all data present            \\bLR rLR\\b Power regression       "
+"y=b*x^m      \\| \n"
+"  \\bsamp\\b sample of data present      Side effects: \\bb\\b, \\bm\\b: "
+"regression coef.       \\| \n"
+"                                       \\br\\b: correlation coef., "
+"\\bcov\\b: covariance  \\| \n"
+msgstr ""
+
+#: po/joerc.for-po:675
+msgid ""
+"  Hit TAB to complete names.  Use up / down arrow keys to traverse "
+"history.   \\| \n"
+"  Special file "
+"names:                                                         \\| \n"
+"       \\b!\\bcommand                 Pipe in/out of a shell "
+"command                \\| \n"
+"       \\b>>\\bfilename               Append to a "
+"file                              \\| \n"
+"       \\b-\\b                        Read/Write to/from standard I/"
+"O               \\|\n"
+"       filename\\b,START,SIZE\\b      Read/Write a part of a file/"
+"device            \\| \n"
+"           Give START/SIZE in decimal (255), octal (0377) or hex "
+"(0xFF)       \\| \n"
+"       \\b\\\\,\\b                       Use backslash to quote special "
+"characters     \\|\n"
+" \\b^C\\b    to abort\n"
+msgstr ""
+
+#: po/joerc.for-po:699
+msgid ""
+"  Send bug reports to: http://sourceforge.net/projects/joe-editor \\| \n"
+"  \\| \n"
+"   default joerc file is here @JOERC@/joerc \\| \n"
+"   default syntax and i18n files are here @JOEDATA@ \\| \n"
+"   additional documentation can be found here @JOEDOC@ \\| \n"
+"  \\| \n"
+"  \\| \n"
+"  \\| \n"
+"  \\| \n"
 msgstr ""
