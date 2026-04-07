@@ -24,6 +24,51 @@ struct kbd {
 	ptrdiff_t	x;	/* What we're up to */
 };
 
+/* Input escape sequence handling (particularly CSI-u)
+ * See https://sw.kovidgoyal.net/kitty/keyboard-protocol/ for codes
+ */
+enum esc_state {
+	ESC_START,	/* in case of ESC ESC */
+	ESC_STARTED,	/* expect '[' or 'O' (in which case, another letter) */
+	ESC_ARGS,	/* expect number, ':', ';' or letter */
+	ESC_LETTER,	/* expect only letter (for ESC O A etc.) */
+	/* end states follow */
+	ESC_END,	/* must be listed first */
+	ESC_O_SEQ,
+	ESC_FAIL
+};
+
+#if CSI_U_LEVEL == 4
+/* this is overkill for most uses, but if you use CSI-u mode bits 3 & 4... */
+# define ARGS_MAX 128
+#else
+/* much more normal */
+# define ARGS_MAX 16
+#endif
+#define KEYSEQ_MAX (10 * ARGS_MAX)
+#define ARG_CP_MAX (ARGS_MAX - 5)
+
+struct esc_parse {
+	enum esc_state state;
+	unsigned char alt; /*bool*/
+	unsigned char argno;
+	ptrdiff_t pos, end;
+	union {
+		int arg[ARGS_MAX];
+		struct { /* in order presented in the CSI-u sequence */
+			int key;     /* main */
+			int shifted; /* shifted */
+			int base;    /* base layout key */
+			int mod;     /* modifiers (MOD_*) */
+			int event;   /* press, repeat, release */
+			int cp[ARG_CP_MAX]; /* code point sequence */
+		} u;
+	};
+	int buf[KEYSEQ_MAX];
+};
+
+int esc_fetch(struct esc_parse *esc);
+
 /* KMAP *mkkmap(void);
  * Create an empty keymap
  */

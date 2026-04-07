@@ -19,7 +19,20 @@ int assume_color = 0;
 int assume_256color = 0;
 
 /* see https://sw.kovidgoyal.net/kitty/keyboard-protocol/ */
-#define CSI_U_ENTRY "\033[>0u"
+/* we probably normally want CSI > 0 u but no harm in testing other things */
+#if CSI_U_LEVEL == 1
+# define CSI_U_ENTRY "\033[>1u"
+#elif CSI_U_LEVEL == 2
+# define CSI_U_ENTRY "\033[>3u"
+#elif CSI_U_LEVEL == 3
+# define CSI_U_ENTRY "\033[>7u"
+#elif CSI_U_LEVEL == 4
+/* set b3 and b4 together else no long composed strings */
+/* kitty bug or specification bug? */
+# define CSI_U_ENTRY "\033[>31u"
+#else
+# define CSI_U_ENTRY "\033[>0u"
+#endif
 #define CSI_U_EXIT  "\033[<u"
 
 /* How to display characters (especially the control ones) */
@@ -925,8 +938,10 @@ SCRN *nopen(CAP *cap)
 		texec(t->cap, t->cl, 1, 0, 0, 0, 0);
 	if (t->brp)
 		texec(t->cap, t->brp, 1, 0, 0, 0, 0);
-	/* disable (most) CSI-u on terminals which support it */
-	ttputs(CSI_U_ENTRY);
+
+/* Disable (most) CSI-u on terminals which support it */
+	if (have_csi_u)
+		ttputs(CSI_U_ENTRY);
 	ttflsh();
 
 /* Initialize variable screen size dependent vars */
@@ -1881,7 +1896,8 @@ void nescape(SCRN *t)
 	if (t->bre)
 		texec(t->cap, t->bre, 1, 0, 0, 0, 0);
 	/* restore previous CSI-u setting on terminals which support it */
-	ttputs(CSI_U_EXIT);
+	if (have_csi_u)
+		ttputs(CSI_U_EXIT);
 	ttflsh();
 	if (t->te)
 		texec(t->cap, t->te, 1, 0, 0, 0, 0);
@@ -1893,7 +1909,8 @@ void nreturn(SCRN *t)
 	if (t->ti)
 		texec(t->cap, t->ti, 1, 0, 0, 0, 0);
 	/* disable (most) CSI-u on terminals which support it */
-	ttputs(CSI_U_ENTRY);
+	if (have_csi_u)
+		ttputs(CSI_U_ENTRY);
 	ttflsh();
 	if (!skiptop && t->cl)
 		texec(t->cap, t->cl, 1, 0, 0, 0, 0);
@@ -1913,7 +1930,8 @@ void nclose(SCRN *t)
 	if (t->bre)
 		texec(t->cap, t->bre, 1, 0, 0, 0, 0);
 	/* restore previous CSI-u setting on terminals which support it */
-	ttputs(CSI_U_EXIT);
+	if (have_csi_u)
+		ttputs(CSI_U_EXIT);
 	ttflsh();
 	if (t->te)
 		texec(t->cap, t->te, 1, 0, 0, 0, 0);

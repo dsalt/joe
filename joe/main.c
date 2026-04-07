@@ -107,10 +107,29 @@ MACRO *timer_play(void)
 
 KBD *shell_kbd;
 
+
+static int ttgetch_wrap(struct esc_parse *esc)
+{
+	if (ungot) {
+		ungot = 0;
+		return ungotc;
+	} else if (esc->pos < esc->end)
+		return esc->buf[esc->pos++];
+	else {
+		int c;
+		do {
+			c = ttgetch();
+			if (c == 27 && have_csi_u) c = esc_fetch(esc);
+		} while (c == 1<<31);
+		return c;
+	}
+}
+
 int edloop(int flg)
 {
 	int term = 0;
 	int ret = 0;
+	struct esc_parse esc = {};
 
 	if (flg) {
 		if (maint->curwin->watom->what == TYPETW)
@@ -122,6 +141,7 @@ int edloop(int flg)
 		W *w;
 		MACRO *m;
 		BW *bw;
+		KBD *kbd;
 		int c;
 		int auto_off = 0;
 		int word_off = 0;
@@ -134,11 +154,7 @@ int edloop(int flg)
 		edupd(1);
 		if (!ahead && !have)
 			ahead = 1;
-		if (ungot) {
-			c = ungotc;
-			ungot = 0;
-		} else
-			c = ttgetch();
+		c = ttgetch_wrap(&esc);
 
 		/* Clear temporary messages */
 		w = maint->curwin;
@@ -158,11 +174,13 @@ int edloop(int flg)
 		/* Use special kbd if we're handing data to a shell window */
 		bw = (BW *)maint->curwin->object;
 		if (shell_kbd && (maint->curwin->watom->what & TYPETW) && bw->b->pid && !bw->b->vt && !bw->b->raw && piseof(bw->cursor))
-			m = dokey(shell_kbd, c);
+			kbd = shell_kbd;
 		else if ((maint->curwin->watom->what & TYPETW) && bw->b->pid && bw->b->vt && bw->cursor->byte == bw->b->vt->vtcur->byte)
-			m = dokey(bw->b->vt->kbd, c);
+			kbd = bw->b->vt->kbd;
 		else
-			m = dokey(maint->curwin->kbd, c);
+			kbd = maint->curwin->kbd;
+
+		m = dokey(kbd, c);
 
 		/* leading part of backtick hack... */
 		/* should only do this if backtick is uquote, but you're not likely to get quick typeahead with ESC ' as uquote */
@@ -204,11 +222,7 @@ int edloop(int flg)
 
 		/* trailing part of disabled autoindent */
 		if (pastehack && !leave && (!flg || !term) && m && (m == type_backtick || (m->cmd && (m->cmd->func == utype || m->cmd->func == urtn))) && ttcheck()) {
-			if (ungot) {
-				c = ungotc;
-				ungot = 0;
-			} else
-				c = ttgetch();
+			c = ttgetch_wrap(&esc);
 			goto more_no_auto;
 		}
 
@@ -745,6 +759,9 @@ int main(int argc, char **real_argv, const char * const *envv)
 			fclose(stdin);
 		}
 	}
+
+	joe_snprintf_1(msgbuf,JOE_MSGBUFSIZE,"CSI-u parsing level %d", CSI_U_LEVEL);
+	msgnw(((BASE *)lastw(maint)->object)->parent, msgbuf);
 
 	edloop(0);
 

@@ -46,6 +46,8 @@
 
 int idleout = 1;
 
+int have_csi_u = 0;
+
 #ifdef __amigaos
 #undef SIGTSTP
 #endif
@@ -205,8 +207,8 @@ static int ttysig = 0;
 static pid_t kbdpid;		/* PID of kbd client */
 static int ackkbd = -1;		/* Editor acks keyboard client to this */
 
-static int mpxfd;		/* Editor reads packets from this fd */
-static int mpxsfd;		/* Clients send packets to this fd */
+static int mpxfd = -1;		/* Editor reads packets from this fd */
+static int mpxsfd = -1;		/* Clients send packets to this fd */
 
 static int nmpx = 0;
 static int acceptch = NO_MORE_DATA;	/* =-1 if we have last packet */
@@ -434,6 +436,32 @@ void ttopnn(void)
 	if (!obufsiz)
 		obufsiz = 1;
 	obuf = (char *)joe_malloc(obufsiz);
+
+	/* Check for CSI-u support */
+	{
+		char buf[16];
+		ssize_t r;
+		int p;
+		extern FILE *termin, *termout;
+		int fd = fileno(termin);
+		fflush(termin);
+		fputs("\e[?u", termout); /* send the query */
+		fflush(termout);
+		fcntl(fd, F_SETFL, O_NDELAY);
+		/* wait for a short time for a response */
+		for (p = 0; p < 10; ++p) {
+			r = read(fd, buf, sizeof(buf));
+			if (r > 0 && buf[0] == 27) break;
+			usleep(1000);
+		}
+		/* if we have ESC [ ? <num> u, we have CSI-u support */
+		if (r >= 5 && buf[0] == 27 && buf[1] == '[' && buf[2] == '?') {
+			p = 3;
+			while (buf[p] >= '0' && buf[p] <= '9') ++p;
+			have_csi_u = buf[p] == 'u';
+		}
+		fcntl(fd, F_SETFL, 0);
+	}
 }
 
 /* Close terminal */
@@ -711,6 +739,11 @@ char ttgetc(void)
 	return havec;
 }
 
+int ttgetc_now(void)
+{
+	return ttcheck() ? ttgetc() : NO_MORE_DATA;
+}
+
 /* Get character from input: convert whatever we get to Unicode */
 
 static struct utf8_sm main_utf8_sm;
@@ -731,6 +764,24 @@ int ttgetch(void)
 			utf8_char = '?'; /* Maybe we should ignore it? */
 		return utf8_char;
 	}
+}
+
+int ttgetch_now(void)
+{
+	int utf8_char;
+	int c = ttgetc_now();
+	if (c < 0)
+		return c;
+	if (locale_map->type) {
+		/* let's just assume that the rest of it is there to be read */
+		while ((utf8_char = utf8_decode(&main_utf8_sm, (char)c)) < 0)
+			c = ttgetc();
+	} else {
+		utf8_char = to_uni(locale_map, (char)c);
+		if (utf8_char == -1)
+			utf8_char = '?'; /* Maybe we should ignore it? */
+	}
+	return utf8_char;
 }
 
 /* Write string to output */

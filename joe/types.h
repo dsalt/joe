@@ -12,6 +12,10 @@
 #define FALLTHROUGH
 #endif
 
+#ifndef CSI_U_LEVEL
+# define CSI_U_LEVEL 0
+#endif
+
 #if defined(HAVE_FUNC_ATTRIBUTE_MALLOC_ARGS) && !defined(__clang__)
 #define ATTR_JOE_MALLOC __attribute__((malloc(joe_free, 1)))
 #define ATTR_MALLOC(func, index) __attribute__((malloc(func, index)))

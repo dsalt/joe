@@ -81,6 +81,24 @@ if test "$termcap" = "yes"; then
 	search_libs="$search_libs termcap"
 fi
 
+AC_ARG_WITH([csi_u],
+[  --with-csi_u[=level]      set the CSI-u processing level (0..4) (default 0)
+                          (1 and 2 will cause some different key behaviour)],
+[case "$withval" in #((
+	0|1|2|3|4) csi_u=$withval; ;;
+	*) AC_MSG_ERROR([invalid value $withval for --with-csi_u]); ;;
+esac], [csi_u=0])
+AC_MSG_NOTICE([setting CSI-u processing level to $csi_u])
+if test "x$csi_u" = x1 || test "x$csi_u" = x2; then
+	AC_MSG_WARN([in CSI-u modes 1 and 2, some keys will exhibit different behaviour])
+fi
+AC_DEFINE_UNQUOTED([CSI_U_LEVEL], [$csi_u], [set the CSI-u processing level (0..4)
+0 = minimal
+1 = disambiguate               (not recommended)
+2 = 1 + report event types     (not recommended)
+3 = 2 + report alternate keys
+4 = 3 + report all as CSI-u & report associated text])
+
 # Select Unicode version
 AC_ARG_VAR(UNICODE_VERSION,
 [  Select Unicode version: 8.0.0, 9.0.0, 10.0.0, 15.0.0, 15.1.0, 16.0.0 or 17.0.0  Default is 17.0.0 ])

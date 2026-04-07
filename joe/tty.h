@@ -6,6 +6,8 @@
  *	This file is part of JOE (Joe's Own Editor)
  */
 
+extern int/*bool*/ have_csi_u;
+
 struct mpx {
 	int	ackfd;		/* Packetizer response descriptor */
 	int	kpid;		/* Packetizer process id */
@@ -83,6 +85,9 @@ void ttclsn(void);
 char ttgetc(void);
 int ttgetch(void);
 int ttcheck(void);
+
+int ttgetc_now(void);
+int ttgetch_now(void);
 
 /* void ttputc(char c);  Write a character to the output buffer.  If it becomes
  * full, call ttflsh()
