@@ -1,0 +1,614 @@
+joe (4.7-0ds1) unstable; urgency=medium
+
+  * New release.
+  * Debian's existing packaging was used for this build.
+    - Dropped their patches (all but the email mode patch are merged).
+
+ -- Darren Salt <devspam@moreofthesa.me.uk>  Wed, 08 Apr 2026 19:02:38 +0100
+
+joe (4.6-2) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Andreas Tille ]
+  * Maintain in Package Salvage team
+    Closes: #1089653
+  * d/rules: Use short dh
+  * debhelper compat 13
+  * debian/menu: deleted since there are desktop files
+  * Update maintainer scripts
+  * Do not Build-Depends dh-autoreconf
+  * Lintian-overrides: national-encoding
+  * Standards-Version: 4.7.0 (routine-update)
+  * Secure URI in copyright format (routine-update)
+  * Remove trailing whitespace in debian/changelog (routine-update)
+  * Rules-Requires-Root: no (routine-update)
+
+  [ Thomas Goirand ]
+  * Add debian/changelog highlighting
+    Closes: #908584
+
+ -- Andreas Tille <tille@debian.org>  Tue, 31 Dec 2024 09:40:52 +0100
+
+joe (4.6-1.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Fix "crash at encoding prompt":
+    Add patch from upstream repo (closes: #1003098).
+
+ -- gregor herrmann <gregoa@debian.org>  Tue, 06 Feb 2024 22:21:39 +0100
+
+joe (4.6-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Drop Vcs fields, closes: #1031282.
+
+ -- Bastian Germann <bage@debian.org>  Tue, 14 Feb 2023 23:52:07 +0100
+
+joe (4.6-1) unstable; urgency=low
+
+  * New upstream version, closes: #887435.
+    + No longer mangles // in the external filter, closes: #877734.
+    + Refreshed 002_mail_jsf_ugly.patch to apply against the non-.in file,
+      the poor man's way.
+
+ -- Josip Rodin <joy-packages@debian.org>  Sat, 17 Feb 2018 20:48:40 +0100
+
+joe (4.4-1) unstable; urgency=medium
+
+  * New upstream version, mainly bug fixes, including our:
+    + Fixes segfaults on lines with many backslashes, closes: #847931.
+    + Fixes classification of Unicode private characters, thanks to
+      Adam Borowski, closes: #822074.
+    + Fixes syntax highlighting of PHP variables in strings, closes: #488118.
+  * Make sure gzip calls ignore timestamps in order for the build to be
+    reproducible, thanks to Chris Lamb, closes: #777726.
+  * Pass variables relevant to cross-compiles and use tripled-prefixed strip(1),
+    thanks to Helmut Grohne, closes: #844289.
+  * Updated standards version to 3.9.6.
+    + Make the copyright file machine-parsable (format 1.0).
+      Update from current source, drop obsolete BSD part.
+    + Document upstream source code repository in Vcs-Browser and Vcs-Hg
+      control fields.
+    + NB: no provision for obsolete conffiles at this point.
+  * Stop manually installing redundant copies of some of the docs now that
+    upstream makefiles do it.
+  * Use dpkg-buildflags through dpkg-dev's makefile snippet (reported by
+    Lintian).
+
+ -- Josip Rodin <joy-packages@debian.org>  Wed, 25 Jan 2017 21:43:14 +0100
+
+joe (4.3-1) unstable; urgency=low
+
+  * New upstream version.
+    + Fixes character class ranges with UTF-8 locales, thanks to
+      Matthew Gabeler-Lee, closes: #820255.
+  * Actually apply our patches by reinstating the quilt series file,
+    thanks to Adam Borowski, hopefully finally closes: #820992 etc.
+  * Drop obsolete note about backticks from README.Debian, as that default
+    key binding had long since changed to Esc+' instead of just `.
+  * Drop obsolete note about -asis vs locale from README.Debian, everyone
+    now simply expects the current behavior.
+  * Added debcontrol syntax highlighting, thanks to Thomas Goirand,
+    closes: #819578.
+
+ -- Josip Rodin <joy-packages@debian.org>  Sun, 06 Nov 2016 13:30:43 +0100
+
+joe (4.1-2) unstable; urgency=low
+
+  * Include a debian/compat file so that dh_autoreconf doesn't think
+    we want a compatibility level of 1 which is unsupported.
+    AFAICT none of the levels ever affect that program, yet it started
+    insisting on it. Oh well.
+  * Add build-{arch,indep} into debian/rules, update joe built binary path.
+
+ -- Josip Rodin <joy-packages@debian.org>  Sun, 31 Jan 2016 20:44:02 +0100
+
+joe (4.1-1) unstable; urgency=low
+
+  * New upstream release.
+    + Drop obsolete/integrated patches to
+      main.c, uformat.c, rc/ftyperc, syntax/php.jsf.in
+    + Update main.c location in rules to use new joe/ subdir
+    + Mark three new files as conffiles in /etc/joe.
+    + Drop the manual installation of documentation files, upstream
+      automake rules have been installing them for a while now,
+      thanks to Adam Borowski, closes: #796123
+    + Includes upstream fix for search&replace getting stuck on
+      zero-width regex, thanks to Alexey Spiridonov, closes: #745557
+    + Includes upstream fix for Lua syntax highlighting getting stuck,
+      thanks to Alexey Spiridonov, closes: #745558
+    + Includes upstream fix for PHP syntax highlighting missing ternary
+      operator without spacing, closes: #588525
+    + Includes upstream fix to stop complaining about old ~/.joerc,
+      closes: #560182
+    + Includes upstream fixes for default indentation: it moved from
+      2 spaces to 4 spaces by default, but the Ctrl+T menu now has options
+      to make it even more trivial to change to tab or 8 spaces or whatever
+      other combination (in addition to existing joerc options),
+      closes: #343462
+    + Includes upstream fixes for paragraph reformatting with very long
+      words, thanks to Diego Roversi, closes: #549276
+  * Upgrade source format to 3.0 (quilt):
+    + Move rc/jstarrc.in patch to patches/001_jstarrc_overtype.patch
+    + Move syntax/main.jsf.in patch to patches/002_mail_jsf_ugly.patch
+    + Make the utf8.c patch apply to joe/charmap.c and move it to
+      patches/003_setlocale_codeset.patch
+    + Restore original config.{guess,sub} on clean so that the build doesn't
+      fail, by way of actually calling the dh_autoreconf* helpers whose
+      package we depend on anyway, but integrated properly into the makefile,
+      thanks to Wookey and Breno Leitao, closes: 752020
+
+ -- Josip Rodin <joy-packages@debian.org>  Sun, 31 Jan 2016 16:28:12 +0100
+
+joe (3.7-2.4) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Use autotools-dev in build to support new architectures (Closes: #748836)
+
+ -- Chen Baozi <baozich@gmail.com>  Thu, 05 Jun 2014 16:10:42 +0800
+
+joe (3.7-2.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Also drop an old editorrc alternative if this package has never
+    been configured before (see #644481).
+  * Update version numbers for the joe/jupp conflicts.
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Thu, 06 Oct 2011 08:58:39 +0000
+
+joe (3.7-2.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Really install the preinst maintainer script this time.
+    closes: #644468
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Thu, 06 Oct 2011 08:06:10 +0000
+
+joe (3.7-2.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Improve coexistence of joe and jupp: move the editorrc symlink
+    to /var/lib/misc/editorrc and make it an update-alternatives
+    slave to editor (agreed by Raphaël Hertzog, Josip Rodin).
+    closes: #644282
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Wed, 05 Oct 2011 20:29:50 +0000
+
+joe (3.7-2) unstable; urgency=high
+
+  * Fix the crash when typing too many dashes on a line, d'oh,
+    cherry-picked upstream CVS fix for uformat.c by Joseph Allen, and
+    fixed that in turn to actually assign the value of x to orgx, silly,
+    closes: #508159.
+  * Fix the various segfaults when called with more than one file, d'oh.
+    Thanks to Oyvind Aabling for a patch, but actually it seems that
+    this was a copy&waste error that crept up into the 3.7 tarball yet
+    was coded properly in CVS (main.c r1.79), so simply used that line
+    from the CVS version, closes: #514512.
+  * Fix the Ins key for jstar users by replacing the obsolete marker
+    "overtype" with "overwrite" in rc/jstarrc.in, thanks to Adam Borowski,
+    closes: #508797.
+  * Fix the matching of python<numbered> interpreters in rc/ftyperc,
+    thanks to Piotr Engelking, closes: #549277.
+  * Undo the mail formatting horror by reverting to the 3.5-2 (lenny)
+    version of syntax/mail.jsf.in. Neither the upstream commits nor the
+    NEWS file really explain the benefits of the new stuff, I only see
+    the bugs and all the excess red that's making me nauseous, too,
+    closes: #597825.
+  * Update standards version to 3.9.1.
+    + Update menu section from Apps/Editors to Applications/Editors. (3.7.3)
+    + Add Homepage field. (3.8.0)
+  * Declare 1.0 in debian/source/format explicitly.
+
+ -- Josip Rodin <joy-packages@debian.org>  Sat, 13 Nov 2010 21:38:30 +0100
+
+joe (3.7-1) unstable; urgency=low
+
+  * New upstream version, closes: #504122, #504439.
+    (Thanks to Jari Aalto for all the help with the BTS.)
+    + jstar is now able to set the left margin to 1, closes: #386883.
+    + Preserves timestamps of backup files once again, closes: #356267.
+    + Non-French sentence/paragraph spacing rules are now working properly,
+      closes: #389410.
+    + The French input (o) to the yes query now works (but thanks to
+      Jari Aalto for the alternative patch anyway), closes: #402565.
+    + Should now separate the interface locale from the input locale
+      (although I still had to forward-port my patch which unbreaks
+      langinfo.h CODESET detection), closes: #453310.
+    + Can now work with files/directories whose names begin with "!",
+      provided that they are doubly-escaped, closes: #163628.
+    + Can now work with files/directories whose names include "\",
+      provided that they are doubly-escaped, closes: 204449.
+    + Option -guess-indent no longer breaks -istep, closes: #430565.
+    + %a/%A fields in the status bar now work on (multibyte) chars,
+      closes: #443181.
+    + syntax/css.jsf no longer forces bold white on keywords, just bold,
+      closes: #414245.
+    + Improved Emacs keybindings in the find/replace query, closes: #440158.
+    + syntax/lua.jsf no longer has a syntax error on line 183,
+      closes: #505489.
+
+ -- Josip Rodin <joy-packages@debian.org>  Sat, 06 Dec 2008 16:08:31 +0100
+
+joe (3.5-2) unstable; urgency=low
+
+  * (Includes the NMU patch for emptiness in execmd.)
+  * Fixed crash when file can't be written to (due to lack of disk space
+    or being over quota), patch by Benjamin Mesing, closes: #103820.
+  * Fixed CHARSET detection to use the fine system function rather than
+    internal workaround, noticed by Chris Brown, closes: #408562.
+  * Stop highlighting '$foo' in PHP, patch by Sam Penny, extended by me to
+    also remove var_insqstring because it's an orphan now, closes: #469840.
+  * Replaced the utterly broken de.po with Jan Engelhardt's version
+    from the upstream tracker item 1629477, closes: #455503.
+
+ -- Josip Rodin <joy-packages@debian.org>  Sat, 31 May 2008 19:00:58 +0200
+
+joe (3.5-1.1) unstable; urgency=low
+
+  * Non-maintainer upload
+  * Fix Segfault when using execmd with empty command
+    (closes: #392077)
+
+ -- Bas Zoetekouw <bas@debian.org>  Wed, 18 Oct 2006 20:47:22 +0200
+
+joe (3.5-1) unstable; urgency=low
+
+  * New upstream version.
+    + configure.ac now includes header check for term.h, dropped that patch
+    + types.h now conditionally includes unistd.h, and is included
+      everywhere else, dropped those patches
+    + termcap.c now includes term.h properly, dropped that patch
+    + There is no longer a default replace string set from history,
+      closes: #363460.
+    + Display of repeated search string now shows \, closes: #363345.
+    + Warning about ignore/steal/quit on vfat is gone, closes: #364493.
+    + Perl syntax highlighting now handles $`, closes: #261352.
+    + Python syntax highlighting now handles the '+comment+multiline
+      docstring, closes: #252643.
+    + Diff syntax highlighting now handles the minus cases properly,
+      though not with the exact patch by Darren Salt, closes: #258434.
+    + Shell syntax highlighting now handles HERE docs, closes: #284393.
+  * Stop shipping fixed /etc/joe/editorrc and instead add all our versions
+    as alternatives to it. Unfortunately it doesn't work as a slave
+    alternative to the main editor alternative, but this is as close
+    as it can get, closes: #269334.
+  * Updated conffiles list, fixed typo in old changelog ("urgence"),
+    removed FSF address from copyright file, moved menu entry to /usr/share,
+    compressed ru manual page, upped the standards version to 3.7.2.
+
+ -- Josip Rodin <joy-packages@debian.org>  Thu, 21 Sep 2006 00:37:33 +0200
+
+joe (3.3-5) unstable; urgency=medium
+
+  * Gah, HAVE_TERM_H was missing from autoconf configuration.
+  * Included utils.h in i18n.c so that joe_malloc is picked up.
+
+ -- Josip Rodin <joy-packages@debian.org>  Tue,  4 Apr 2006 12:32:50 +0200
+
+joe (3.3-4) unstable; urgency=medium
+
+  * Included a few more headers in order to avoid the broken casts on
+    architectures where getenv and malloc aren't the same as on ix86,
+    hopefully closes: #360666.
+
+ -- Josip Rodin <joy-packages@debian.org>  Tue,  4 Apr 2006 11:58:27 +0200
+
+joe (3.3-3) unstable; urgency=low
+
+  * Added the actual inclusion of <term.h> after the check for HAVE_TERM_H
+    in termcap.c, d'oh, thanks to Peter Troeger, closes: #252934.
+  * Added the #ifdef HAVE_STDLIB_H\n#include <stdlib.h>\n#endif sequence
+    wherever malloc is used, thanks to Tomas Kalibera, closes: #291267.
+  * Better documented some frequently asked questions, closes: #284142
+    and further alleviates #219914.
+
+ -- Josip Rodin <joy-packages@debian.org>  Mon,  3 Apr 2006 01:32:08 +0200
+
+joe (3.3-2) unstable; urgency=low
+
+  * Updated conffiles, dropped non-existent INFO file, dropped the doc
+    directory from /etc/joe (?!).
+
+ -- Josip Rodin <joy-packages@debian.org>  Sun, 12 Feb 2006 19:57:13 +0100
+
+joe (3.3-1) unstable; urgency=low
+
+  * New upstream version, closes: #348389.
+  * No longer lacks the initialization of a file descriptor in the charset
+    reading function, so it no longer crashes because of empty $HOME,
+    closes: #349257.
+
+ -- Josip Rodin <joy-packages@debian.org>  Sun, 12 Feb 2006 19:39:51 +0100
+
+joe (3.1-0.2) unstable; urgency=high
+
+  * NMU (urgency set to high since this breaks upgrades)
+  * Changed 'command -v' to the '-x' (as suggested by update-menu's
+    documentaiton) since if joe is upgraded together with menu
+    update-menus is not guaranteed to be executable. Actually,
+    this is prevented so that update-menus is only run once in the upgrade
+    process (after it has been upgraded) (Closes: #253185, #253535, #254154)
+
+ -- Javier Fernandez-Sanguino Pen~a <jfs@computer.org>  Tue, 20 Jul 2004 11:58:55 +0200
+
+joe (3.1-0.1) unstable; urgency=low
+
+  * NMU
+  * The '3 years and 38 days to fix a new upstream release bug' release (Closes: #95303, #246136)
+  * Support added for color (Closes: #62752)
+  * debian/menu
+     o Fix missing quotte for needs
+     o Full path for command entry
+  * debian/changelog converted to UTF-8
+
+ -- Christian Marillat <marillat@debian.org>  Wed,  2 Jun 2004 18:28:13 +0200
+
+joe (2.9.8-1) experimental; urgency=low
+
+  * New upstream and new upstream version. :) closes: #95303
+    + No longer forgets small undone changes, closes: #30978
+    + Disables set[ug]id bits in backup files, closes: #90476
+  * Added one post-2.9.8 patch for uedit.c from vsamel, so that
+    the function go to previous/next word works properly.
+
+ -- Josip Rodin <joy-packages@debian.org>  Tue, 19 Aug 2003 13:03:15 +0200
+
+joe (2.8-23) unstable; urgency=medium
+
+  * A forgotten free() wrapper invocation was mistakenly omitted while
+    disabling ./.joerc reading code, and this screwed up some of the
+    environment variable parsing. Thanks to Frederic Briere, closes: #196391.
+    (patch 015_disable_curdir_joerc)
+  * Updated paths where configuration files are searched for in the
+    commented out part of each conffile, closes: #161844.
+    (new patch 018_conffile_paths)
+
+ -- Josip Rodin <joy-packages@debian.org>  Tue, 19 Aug 2003 12:56:46 +0200
+
+joe (2.8-22) unstable; urgency=low
+
+  * Removed bogus reference to varargs.h, closes: #195152.
+    (patch 017_varargs)
+  * Removed old FHS transition code.
+
+ -- Josip Rodin <joy-packages@debian.org>  Fri, 15 Aug 2003 19:59:32 +0200
+
+joe (2.8-21) unstable; urgency=medium
+
+  * Fixed instant crashes on MIPS, which even though it has SA_INTERRUPT
+    and/or SV_INTERRUPT, needs just signal(SIGALRM,dotick).
+    Patch kindly provided by Peter Loje <pl@2m.dk>, closes: #113941.
+  * Added removal of /etc/joe in postrm+purge, closes: #133450.
+  * Added alternatives for other joe names, closes: #121086.
+  * Fixed misspelling of "imitation" in the description, closes: #124774.
+
+ -- Josip Rodin <jrodin@jagor.srce.hr>  Tue, 25 Jun 2002 20:25:13 +0200
+
+joe (2.8-20) unstable; urgency=low
+
+  * Added a note about the new version status in README.Debian.
+  * Moved the editor manual page symlink to /usr/share/man, closes: #88713.
+  * Fixed the description, closes: #91218, parts of #88713.
+  * Added a menu entry in Apps/Editors, another part of #88713.
+  * Added Marcin Owsiany's Polish translation of help, closes: #95384.
+
+ -- Josip Rodin <jrodin@jagor.srce.hr>  Tue, 16 Oct 2001 21:16:36 +0200
+
+joe (2.8-19) unstable; urgency=low
+
+  * Disabled loading of .joerc from the current directory because it is
+    a security risk, closes: #88055.
+  * Standards-Version: 3.5.2.
+
+ -- Josip Rodin <jrodin@jagor.srce.hr>  Fri,  2 Mar 2001 20:33:38 +0100
+
+joe (2.8-18) unstable; urgency=low
+
+  * Added some stuff from joe-2.8-43.src.rpm (some data collected from their
+    Bugzilla, too):
+     + 014_locale: fixes for the locale issues, from Petr Kolar
+       <PETR.KOLAR@vslib.cz>. International characters are displayed
+       properly (without -asis!), and word skipping is done correctly if
+       you set $LANG properly, closes: #36281.
+     + 009_sprintf_to_snprintf: renamed/merged from 009_percent_number_s,
+       because the purpose is mostly the same -- fixes some sprintfs to be
+       snprintfs to prevent possible buffer overflows, from Cristian Gafton
+       <gafton@redhat.com>.
+     + rc.h clarification of procrc arguments, from Trond Eivind Glomsrød
+       <teg@redhat.com>, added to 006_missing_vars
+     + moved the vfile.c patch from 000_dwarfs to a new file,
+       000_large_file_segfault: it is indeed a fix for segmentation fault
+       when exiting after reading huge files, from b4506055@csie.ntu.edu.tw.
+  * Updated patch from Wichert, with which the DEADJOE files are written
+    correctly, and they have mode 0600 as before, closes: #78422.
+    BTW Red Hat's DEADJOE security patch appears to have some issues. :)
+  * Fixed some bits and pieces in debian/rules.
+
+ -- Josip Rodin <jrodin@jagor.srce.hr>  Sun, 26 Nov 2000 13:43:21 +0100
+
+joe (2.8-17) unstable; urgency=low
+
+  * Fixed editor.1 link, closes: #71214.
+  * Doesn't install /etc/joe/termcap anymore, either.
+  * Moved to DBS, because I need multiple-patch system.
+    Separated patches to these chunks:
+      + 000_dwarfs: three hunks meaning of which I have yet to determine :)
+        Dale said (but he wasn't 100% sure):
+        "I think this is one of the patches for the segfault on large files"
+      + 001_missing_headers: two headers needed for the thing to compile
+      + 002_int_to_long: changes to some casts, int -> long
+      + 003_renamed_stuff: renaming of *_alloc functions and variables
+      + 004_terminal_init: terminal initialization stuff
+      + 005_pts: support for /dev/pts/* under glibc 2.1
+      + 006_missing_vars: addition of missing variables in 3 function calls
+      + 007_parens_logic: fixed logic with parenthesis
+      + 008_protect_deadjoe: make DEADJOE 600.
+      + 009_percent_number_s: changes %s -> %.60s etc in messages
+      + 010_eol_in_conf_files: addition of "eol .@7" to config files
+      + 011_manpage: manual page patches
+      + 012_makefile_debug: changed default CFLAGS to -g [redundant]
+  * Removed a few bashisms from DBS files :/
+  * Added 013_Wall_patches: assorted patches to keep down warnings when
+    compiling with -Wall. (hopefully I didn't wreck something)
+  * Added Wichert's changes from the -15.1 potato NMU, closes: #77676
+      + safe creation of DEADJOE in order to prevent nastiness, closes: #34524
+        (added to 008_protect_deadjoe, with an addition of defining
+        _GNU_SOURCE in there because O_NOFOLLOW isn't defined otherwise)
+      + renamed _another_ function in order to prevent conflict with glibc
+        (added to 003_renamed_stuff)
+
+ -- Josip Rodin <jrodin@jagor.srce.hr>  Sat,  9 Sep 2000 20:40:23 +0200
+
+joe (2.8-16) unstable; urgency=low
+
+  * New maintainer.
+  * Fixed :include directive, closes: #70460.
+  * Added Kalle Olavi Niemitalo <tosi@stekt.oulu.fi>'s patches,
+    closes: #62396.
+  * Recompiled against libncurses5, closes: #67344.
+  * Since joe doesn't use termcap (but terminfo), termidx can be removed,
+    which is an ever so convenient way to do this: closes: #29890, #51611,
+    #56170.
+  * Undid the funny patch to a msdos-related file, closes: #66692.
+  * Updated for full Policy 3.x compliance. Lintian clean.
+  * Removed patches to the Makefile, do everything needed from debian/rules
+    in a cleaner way.
+  * Removed obsolete .editorrc, editorrc, debian.README files (used parts
+    of the latter for README.Debian).
+  * Removed unneeded Modifications section in the manual page, and
+    improved its header.
+  * Redid the package description. Various small updates to debian/*.
+
+ -- Josip Rodin <jrodin@jagor.srce.hr>  Tue, 29 Aug 2000 20:46:18 +0200
+
+joe (2.8-15) frozen unstable; urgency=low
+
+  * added another patch for large file segfault on exit.
+  *             closes: #18084, #18085, #33753, #42581, #50976
+
+ -- Dale Scheetz <dwarf@polaris.net>  Thu,  6 Apr 2000 09:38:44 -0400
+
+joe (2.8-14) unstable; urgency=low
+
+  * added patch for "core dump on large filename"
+
+ -- Dale Scheetz <dwarf@polaris.net>  Sun,  1 Aug 1999 14:29:21 -0400
+
+joe (2.8-13) unstable; urgency=low
+
+  * added patch for DEADJOE privileges: fixes #41444
+  * corrected typo in description: fixes #18946
+
+ -- Dale Scheetz <dwarf@polaris.net>  Sun,  1 Aug 1999 14:11:10 -0400
+
+joe (2.8-12) frozen unstable; urgency=low
+
+  * rebuilt against version independent libc6 and the newest ncurses4
+  * added the end key patch to the jstarrc file: fixes 24948
+  * added the end key patch to the other rc files to avoid further bugs
+  * fixed minor typo in description: fixes 18946
+  * applied patch changing int to long for alpha port: fixes 21138
+
+ -- Dale Scheetz <dwarf@polaris.net>  Thu, 10 Dec 1998 14:27:25 -0500
+
+joe (2.8-11) frozen unstable; urgency=low
+
+  * rebuilt against ncurses4
+
+ -- Dale Scheetz <dwarf@polaris.net>  Sun,  1 Nov 1998 14:56:35 -0500
+
+joe (2.8-10) frozen unstable; urgency=low
+
+  * truncated file name when building message buffers: fixes 18085
+  * remove substvars* and files* from the debian directory (unreported error)
+
+ -- Dale Scheetz <dwarf@polaris.net>  Sun, 19 Apr 1998 14:48:31 -0400
+
+joe (2.8-9) unstable; urgency=low
+
+  * Applied "end key" patch : fixes 16941, 18627
+  * Applied screen init patch : fixes 18626
+
+ -- Dale Scheetz <dwarf@polaris.net>  Thu, 26 Feb 1998 22:32:51 -0500
+
+joe (2.8-8) unstable; urgency=low
+
+  * compiled for libc6
+  * general clean up of rules file
+  * added update-alternatives for /usr/bin/editor
+  * removed execute permission from copyright : bug #13713
+  * fixed screensize problems : bug #14968
+
+ -- Dale Scheetz <dwarf@polaris.net>  Wed, 19 Nov 1997 09:28:47 -0500
+
+joe (2.8-7) frozen unstable; urgency=low
+
+  * corrected permissions on conffiles
+
+  * Upgraded source package format to Standards-Version 2.1.0.0
+
+ -- Dale Scheetz <dwarf@polaris.net>  Sun, 24 Nov 1996 12:34:33 -0500
+
+Fri Jun 28 12:43:33 MET DST 1996 Michael Meskes <meskes@informatik.rwth-aachen.de>
+
+        joe (2.8-5):
+
+	* Changed debian.rules for new naming scheme (Bug#3337)
+
+	* Added architecture field to debian.control
+
+	* gzip manpages
+
+Fri Mar  8 18:29:17 MET 1996 Michael Meskes <meskes@informatik.rwth-aachen.de>
+
+        joe (2.8-4):
+
+	* Moved termidx call into postinst file
+
+	* Added termcap and terminfo file to conffiles
+
+Tue Feb 27 19:56:42 MET 1996 Michael Meskes <meskes@informatik.rwth-aachen.de>
+
+        joe (2.8-3):
+
+	* Changed extended description
+
+	* Added automatic creation of .changes file
+
+	* Corrected control file to list revision again
+
+Wed Jan 24 12:34:23 MET 1996 Michael Meskes <meskes@informatik.rwth-aachen.de>
+
+	joe (2.8-2):
+
+	* Changed symbol name "valloc" to make joe run again with libc >= 5.3.2
+
+Tue Jan  9 15:56:13 MET 1996 Michael Meskes <meskes@informatik.rwth-aachen.de>
+
+	joe (2.8-1):
+
+	* Added support for indexed termcap file
+
+Fri Apr 21 16:35:28 MET DST 1995 Christian Linhart <chris@cosy.sbg.ac.at>
+
+	joe (2.8-0):
+
+	* Added Debian GNU/Linux package maintenance system files.
+
+	* Configured Makefile:
+		- to be FSSTND-compliant.
+		- CFLAGS to comply with Debian packaging guidelines
+	  	- Added DESTDIR-Variable for being able to install into
+	  	  debian-tmp
+
+	* Edited man-page to document the changed file positions.
+
+	* Made symlinks to joe's man page for the other names,
+	  joe can be invoked as.
+
+Local variables:
+mode: debian-changelog
+End:
+

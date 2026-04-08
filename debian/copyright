@@ -1,0 +1,27 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Joe's Own Editor
+Source: Original sources can be found at http://joe-editor.sourceforge.net/
+
+Files: *
+Copyright: 1992-2015 Joseph H. Allen
+           Portions Copyright (C) 2001 Marek 'Marx' Grac
+           Portions Copyright (C) 1999 Jesse McGrew
+License: GPL-1+
+ JOE is free software; you can redistribute it and/or modify it under the
+ terms of the GNU General Public License as published by the Free Software
+ Foundation; either version 1, or (at your option) any later version.
+ .
+ JOE is distributed in the hope that it will be useful, but WITHOUT ANY
+ WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ can be found in `/usr/share/common-licenses/GPL' file.
+
+Files: debian/*
+Copyright: 1995 Christian Linhart
+           1996 Michael Meskes
+           1996-2000 Dale Scheetz
+           2000-2016 Josip Rodin
+License: GPL-1+

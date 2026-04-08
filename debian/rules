@@ -1,0 +1,21 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/architecture.mk
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+%:
+	dh $@
+
+tmp := $(CURDIR)/debian/joe
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -f $(tmp)/usr/bin/termidx
+	rm -rf $(tmp)/etc/joe/doc
+
+override_dh_link:
+	dh_link
+	for i in jmacs jstar rjoe jpico; do \
+          dh_link usr/share/man/man1/joe.1 usr/share/man/man1/$$i.1; \
+        done
