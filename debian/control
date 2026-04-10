@@ -1,13 +1,10 @@
 Source: joe
-Maintainer: Package Salvaging Team <team+salvage@tracker.debian.org>
-Uploaders: Josip Rodin <joy-packages@debian.org>
+Maintainer: Darren Salt <devspam@moreofthesa.me.uk>
 Section: editors
 Priority: optional
 Build-Depends: debhelper-compat (=13),
                libncurses-dev
 Standards-Version: 4.7.0
-Vcs-Browser: https://salsa.debian.org/salvage-team/joe
-Vcs-Git: https://salsa.debian.org/salvage-team/joe.git
 Homepage: http://joe-editor.sourceforge.net/
 Rules-Requires-Root: no
 
