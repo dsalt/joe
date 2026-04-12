@@ -78,7 +78,7 @@ struct high_delim_frame {
 struct high_syntax {
 	struct high_syntax *next;			/* Linked list of loaded syntaxes */
 	char *name;					/* Name of this syntax */
-	char *subr;					/* Name of the subroutine (or NULL for whole file) */
+	int subr;					/* Name of the subroutine (index into state_names) (or -1 for whole file) */
 	struct high_param *params;			/* Parameters defined */
 	struct high_state **states;			/* The states of this syntax.  states[0] is idle state */
 	HASH *ht_states;				/* Hash table of states */
@@ -99,11 +99,16 @@ struct high_syntax *load_syntax(const char *name);
 HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE state,struct charmap *charmap);
 
 typedef int attr_data;
+struct state_debug_name {
+	int subr, name;
+};
 struct state_debug_data {
-	int name, recolor;
+	struct state_debug_name state, recolor;
 };
 extern attr_data *attr_buf;
 extern struct state_debug_data *syndebug_buf;
+#define DBG_VALID_STATE(a)  ((a).name >= 0)
+#define DBG_SAME_STATE(a,b) ((a).subr == (b).subr && (a).name == (b).name)
 
 #define clear_state(s) (((s)->saved_s = 0), ((s)->state = 0), ((s)->stack = 0), ((s)->delim_stack = 0))
 #define invalidate_state(s) (((s)->state = -1), ((s)->saved_s = 0), ((s)->stack = 0), ((s)->delim_stack = 0))

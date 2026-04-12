@@ -357,6 +357,15 @@ static void ansi_init(struct ansi_sm *sm)
 
 #define SELECT_IF(c)	{ if (c) { ca = selectatr; cm = selectmask; } else { ca = 0; cm = -1; } }
 
+static void put_name(struct state_debug_name name)
+{
+	if (name.subr >= 0) {
+		ttputs(state_names[name.subr]);
+		ttputs(".");
+	}
+	ttputs(name.name >= 0 ? state_names[name.name] : "(idle)");
+}
+
 static struct state_debug_data out_osc8(const struct state_debug_data *oldstate, const struct state_debug_data *newstate, int opt)
 {
 	static const struct state_debug_data empty = {};
@@ -368,51 +377,51 @@ static struct state_debug_data out_osc8(const struct state_debug_data *oldstate,
 
 	switch (opt) {
 		case 1:
-			if (oldstate->name == newstate->name)
+			if (DBG_SAME_STATE(oldstate->state, newstate->state))
 				return *oldstate;
 
-			if (oldstate->name >= 0)
+			if (DBG_VALID_STATE(oldstate->state))
 				ttputs("\x1B]8;;\x1B\\");
 
-			if (newstate && newstate->name >= 0) {
+			if (newstate && DBG_VALID_STATE(newstate->state)) {
 				ttputs("\x1B]8;id=");
-				ttputs(state_names[newstate->name]);
+				put_name(newstate->state);
 				ttputs(";");
-				ttputs(state_names[newstate->name]);
+				put_name(newstate->state);
 				ttputs("\x1B\\");
 			}
 			break;
 		case 2:
-			if (oldstate->recolor == newstate->recolor)
+			if (DBG_SAME_STATE(oldstate->recolor, newstate->recolor))
 				return *oldstate;
 
-			if (oldstate->recolor)
+			if (DBG_VALID_STATE(oldstate->recolor))
 				ttputs("\x1B]8;;\x1B\\");
 
-			if (newstate && newstate->name >= 0) {
+			if (newstate && DBG_VALID_STATE(newstate->state)) {
 				ttputs("\x1B]8;id=");
-				ttputs(newstate->recolor ? state_names[newstate->recolor] : "(idle)");
+				put_name(newstate->recolor);
 				ttputs(";");
-				ttputs(newstate->recolor ? state_names[newstate->recolor] : "(idle)");
+				put_name(newstate->recolor);
 				ttputs("\x1B\\");
 			}
 			break;
 		case 3:
-			if (oldstate->name == newstate->name && oldstate->recolor == newstate->recolor)
+			if (DBG_SAME_STATE(oldstate->state, newstate->state) && DBG_SAME_STATE(oldstate->recolor, newstate->recolor))
 				return *oldstate;
 
-			if (oldstate->name >= 0 || oldstate->recolor >= 0)
+			if (DBG_VALID_STATE(oldstate->state) || DBG_VALID_STATE(oldstate->recolor))
 				ttputs("\x1B]8;;\x1B\\");
 
-			if (newstate && newstate->name >= 0) {
+			if (newstate && DBG_VALID_STATE(newstate->state)) {
 				ttputs("\x1B]8;id=");
-				ttputs(state_names[newstate->name]);
+				put_name(newstate->state);
 				ttputs(";");
-				ttputs(state_names[newstate->name]);
-				if (newstate->recolor && newstate->recolor != newstate->name) {
+				put_name(newstate->state);
+				if (DBG_VALID_STATE(newstate->recolor) && !DBG_SAME_STATE(newstate->recolor, newstate->state)) {
 					/* ugh, only ASCII for OSC-8 pop-up text */
 					ttputs("->");
-					ttputs(state_names[newstate->recolor]);
+					put_name(newstate->recolor);
 				}
 				ttputs("\x1B\\");
 			}
@@ -423,7 +432,7 @@ static struct state_debug_data out_osc8(const struct state_debug_data *oldstate,
 
 static void end_osc8(const struct state_debug_data *oldstate, int opt)
 {
-	if ((opt & 1 && oldstate->name >= 0) || (opt & 2 && oldstate->recolor >= 0))
+	if ((opt & 1 && DBG_VALID_STATE(oldstate->state)) || (opt & 2 && DBG_VALID_STATE(oldstate->recolor)))
 		ttputs("\x1B]8;;\x1B\\");
 }
 #define OUT_osc8(bw,os,ns) ((bw)->b->o.syntax_debug ? out_osc8(&(os), &(ns), (bw)->b->o.syntax_debug) : (os))

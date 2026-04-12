@@ -273,8 +273,10 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 			/* Color with current state */
 			attr[-1] = h->color;
 			/* h->no? */
-			if (syndebug)
-				syndebug[-1].recolor = syndebug[-1].name = h->name;
+			if (syndebug) {
+				syndebug[-1].recolor.name = syndebug[-1].state.name = h->name;
+				syndebug[-1].recolor.subr = syndebug[-1].state.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+			}
 
 			/* Get command for this character */
 			if (h->delim && h_state.saved_s && c == h_state.saved_s[0] && h_state.saved_s[1] && h_state.saved_s[2] == 0)
@@ -351,22 +353,28 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 			if (recolor_delimiter_or_keyword)
 				for(x= -(buf_idx+1);x<-1;++x) {
 					attr[x-ofst] = h->color;
-					if (syndebug)
-						syndebug[x-ofst].recolor = h->name;
+					if (syndebug) {
+						syndebug[x-ofst].recolor.name = h->name;
+						syndebug[x-ofst].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+					}
 				}
 			for(x=cmd->recolor;x<0;++x)
 				if (attr + x >= attr_buf) {
 					attr[x] = h->color;
-					if (syndebug)
-						syndebug[x].recolor = h->name;
+					if (syndebug) {
+						syndebug[x-ofst].recolor.name = h->name;
+						syndebug[x-ofst].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+					}
 				}
 
 			/* Mark recoloring */
 			if (cmd->recolor_mark)
 				for(x= -mark1;x<-mark2;++x) {
 					attr[x] = h->color;
-					if (syndebug)
-						syndebug[x].recolor = h->name;
+					if (syndebug) {
+						syndebug[x-ofst].recolor.name = h->name;
+						syndebug[x-ofst].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+					}
 				}
 
 			/* Push string or character? */
@@ -473,6 +481,34 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 	return h_state;
 }
 
+/* get index no. for a state name
+ * dup = true to re-use index nos.
+ */
+static int store_state_name(const char *name, bool dup)
+{
+	/* Find a matching name */
+	int i;
+	for (i = 0; i < num_state_names; ++i)
+		if (!strcmp(name, state_names[i])) {
+			if (dup)
+				return i;
+			break;
+		}
+
+	if (!state_names) {
+		alloc_state_names = 128;
+		state_names = (const char **)joe_malloc(alloc_state_names * SIZEOF(*state_names));
+	}
+	if (num_state_names == alloc_state_names) {
+		alloc_state_names *= 2;
+		state_names = (const char **)joe_realloc(state_names, alloc_state_names * SIZEOF(*state_names));
+	}
+
+	/* Copy the pointer if a match was found else duplicate the name */
+	state_names[num_state_names] = i < num_state_names ? state_names[i] : zdup(name);
+	return num_state_names++; /* and account for one more name in the list */
+}
+
 /* Subroutines for load_dfa() */
 
 static struct high_state *find_state(struct high_syntax *syntax,char *name)
@@ -484,25 +520,9 @@ static struct high_state *find_state(struct high_syntax *syntax,char *name)
 
 	/* It doesn't exist, so create it */
 	if(!state) {
-		if (!state_names) {
-			alloc_state_names = 128;
-			state_names = (const char **)joe_malloc(alloc_state_names * SIZEOF(*state_names));
-		}
-		if (num_state_names == alloc_state_names) {
-			alloc_state_names *= 2;
-			state_names = (const char **)joe_realloc(state_names, alloc_state_names * SIZEOF(*state_names));
-		}
-
-		/* Find a matching name */
-		int i;
-		for (i = 0; i < num_state_names; ++i)
-			if (!strcmp(name, state_names[i]))
-				break;
-		/* Copy the pointer if a match was found else duplicate the name */
-		state_names[num_state_names] = i < num_state_names ? state_names[i] : zdup(name);
 
 		state=(struct high_state *)joe_malloc(SIZEOF(struct high_state));
-		state->name = num_state_names++; /* and account for one more name in the list */
+		state->name = store_state_name(name, false);
 		state->no = syntax->nstates;
 		state->color = 0;
 		state->colorp = NULL;
@@ -628,7 +648,7 @@ void dump_syntax(BW *bw)
 	pnextl(bw->cursor);
 	for (syntax = syntax_list; syntax; syntax = syntax->next) {
 		int x;
-		joe_snprintf_3(buf, SIZEOF(buf), "Syntax name=%s, subr=%s, nstates=%d\n",syntax->name,syntax->subr,(int)syntax->nstates);
+		joe_snprintf_3(buf, SIZEOF(buf), "Syntax name=%s, subr=%s, nstates=%d\n",syntax->name,state_names[syntax->subr],(int)syntax->nstates);
 		binss(bw->cursor, buf);
 		pnextl(bw->cursor);
 		zlcpy(buf, SIZEOF(buf), "params=(");
@@ -910,7 +930,7 @@ static struct high_state *load_dfa(struct high_syntax *syntax)
 						if (!stack || !stack->ignore) {
 							inside_subr = 1;
 							this_one = 0;
-							if (syntax->subr && !zcmp(bf, syntax->subr))
+							if (syntax->subr >= 0 && !zcmp(bf, state_names[syntax->subr]))
 								this_one = 1;
 						}
 					}
@@ -930,7 +950,7 @@ static struct high_state *load_dfa(struct high_syntax *syntax)
 		} else if(!parse_char(&p, '=')) {
 			/* Parse color */
 			parse_syntax_color_def(&syntax->color,p,fullpath,line);
-		} else if ((syntax->subr && !this_one) || (!syntax->subr && inside_subr)) {
+		} else if ((syntax->subr >= 0 && !this_one) || (syntax->subr < 0 && inside_subr)) {
 			/* Ignore this line because it's not the code we want */
 		} else if(!parse_char(&p, ':')) {
 			if(!parse_ident(&p, bf, SIZEOF(bf))) {
@@ -1029,9 +1049,9 @@ static int syntax_match(struct high_syntax *syntax,const char *name,const char *
 	struct high_param *syntax_params;
 	if (zcmp(syntax->name,name))
 		return 0;
-	if (!syntax->subr ^ !subr)
+	if ((syntax->subr < 0) ^ !subr)
 		return 0;
-	if (subr && zcmp(syntax->subr,subr))
+	if (subr && zcmp(state_names[syntax->subr],subr))
 		return 0;
 	syntax_params = syntax->params;
 	while (syntax_params && params) {
@@ -1057,7 +1077,7 @@ struct high_syntax *load_syntax_subr(const char *name,char *subr,struct high_par
 	/* Create new one */
 	syntax = (struct high_syntax *)joe_malloc(SIZEOF(struct high_syntax));
 	syntax->name = zdup(name);
-	syntax->subr = subr ? zdup(subr) : 0;
+	syntax->subr = subr ? store_state_name(subr, true) : -1;
 	syntax->params = params;
 	syntax->next = syntax_list;
 	syntax->nstates = 0;
