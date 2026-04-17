@@ -40,45 +40,36 @@ static int alloc_state_names = 0;
 /* Check that the attr and, if needed, the syntax debug buffers are allocated */
 /* Will always set *attrp = *attr_endp = attr_buf and, if non-NULL, *syndebugp = syndebug_buf */
 
-static void check_alloc_attr_bufs(attr_data **attrp, attr_data **attr_endp, struct state_debug_data **syndebugp)
+static void check_alloc_attr_bufs(bool syndebug)
 {
 	if (!attr_buf) {
 		attr_size = 1024;
 		attr_buf = (attr_data *)joe_malloc(SIZEOF(attr_data) * attr_size);
 	}
-	*attrp = attr_buf;
-	*attr_endp = attr_buf + attr_size;
 
-	if (!syndebugp) {
+	if (!syndebug) {
 		joe_free(syndebug_buf);
 		syndebug_buf = NULL;
 	} else if (!syndebug_buf) {
 		/* attr_size will be non-0 here */
 		syndebug_buf = (struct state_debug_data *)joe_malloc(SIZEOF(struct state_debug_data) * attr_size);
 	}
-	if (syndebugp)
-		*syndebugp = syndebug_buf;
 }
 
-static void realloc_attr_bufs(attr_data **attrp, attr_data **attr_endp, struct state_debug_data **syndebugp)
+static void realloc_attr_bufs(bool syndebug)
 {
 	int new_size = attr_size * 2;
 
 	attr_buf = (attr_data *)joe_realloc(attr_buf, SIZEOF(attr_data) * new_size);
-	*attrp = attr_buf + attr_size;
-	*attr_endp = attr_buf + new_size;
-
-	if (syndebugp) {
+	if (syndebug)
 		syndebug_buf = (struct state_debug_data *)joe_realloc(syndebug_buf, SIZEOF(struct state_debug_data) * new_size);
-		*syndebugp = syndebug_buf + attr_size;
-	}
 
 	attr_size = new_size;
 }
 
 static HIGHLIGHT_STATE ansi_parse(P *line, HIGHLIGHT_STATE h_state)
 {
-	attr_data *attr, *attr_end;
+	int attr = 0;
 
 	int c;
 	int bold = 0; /* Save bold state for extended scheme colors */
@@ -88,17 +79,17 @@ static HIGHLIGHT_STATE ansi_parse(P *line, HIGHLIGHT_STATE h_state)
 	attr_data current_attr = 0; /* (int)h_state.state; */ /* Do not let attributes cross lines - simplifies vt.c */
 	/* int new_attr = *(int *)(h_state.saved_s + 8); */
 
-	check_alloc_attr_bufs(&attr, &attr_end, NULL);
+	check_alloc_attr_bufs(false);
 
 	int ansi_mode = line->b->o.ansi;
 
 	line->b->o.ansi = 0;
 
 	while ((c = pgetc(line)) != NO_MORE_DATA) {
-		if (attr == attr_end)
-			realloc_attr_bufs(&attr, &attr_end, NULL);
+		if (attr >= attr_size)
+			realloc_attr_bufs(false);
 
-		*attr++ = current_attr;
+		attr_buf[attr++] = current_attr;
 		switch (state) {
 			case IDLE: {
 				if (c == 27) {
@@ -201,10 +192,8 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 	int buf_idx;	/* Index into buffer */
 	int c;		/* Current character */
 
-	attr_data *attr, *attr_end;
-	struct state_debug_data *syndebug = NULL;
-	/* NULL unless syntax debug mode is active*/
-	struct state_debug_data **const syndebugp = line->b->o.syntax_debug ? &syndebug : NULL;
+	int attr = 0;
+	bool syndebug = !!line->b->o.syntax_debug;
 
 	int buf_en;	/* Set for name buffering */
 	int ofst;	/* record offset after we've stopped buffering */
@@ -226,8 +215,6 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 	delim_stack = h_state.delim_stack;
 	h = (stack ? stack->syntax : syntax)->states[h_state.state];
 	buf_idx = 0;
-	attr = attr_buf;
-	attr_end = attr_buf + attr_size;
 	buf_en = 0;
 	ofst = 0;
 	mark1 = 0;
@@ -236,7 +223,7 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 
 	buf[0]=0;	/* Forgot this originally... took 5 months to fix! */
 
-	check_alloc_attr_bufs(&attr, &attr_end, syndebugp);
+	check_alloc_attr_bufs(syndebug);
 
 	/* Get next character */
 	while((c=pgetc(line))!=NO_MORE_DATA) {
@@ -249,13 +236,11 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 			c = to_uni(charmap, c);
 
 		/* Create or expand attribute array if necessary */
-		if(attr==attr_end)
-			realloc_attr_bufs(&attr, &attr_end, syndebugp);
+		if(attr >= attr_size)
+			realloc_attr_bufs(syndebug);
 
-		/* Advance to next attribute position (note attr[-1] below) */
+		/* Advance to next attribute position */
 		attr++;
-		if (syndebug)
-			syndebug++;
 
 		/* Loop while noeat */
 		do {
@@ -264,18 +249,18 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 			      error_invalidate_return:
 				invalidate_state(&h_state);
 				/* remainder of these two buffers has unknown content - clear it */
-				memset(attr, 0, (size_t)(attr_end - attr) * sizeof(*attr));
+				memset(attr_buf + attr, 0, (size_t)(attr_size - attr) * sizeof(attr_buf[0]));
 				if (syndebug)
-					memset(syndebug, 255, (size_t)(attr_end - attr) * sizeof(*syndebug)); /* set to -1 */
+					memset(syndebug_buf + attr, 255, (size_t)(attr_size - attr) * sizeof(syndebug_buf[0])); /* set to -1 */
 				return h_state;
 			}
 
 			/* Color with current state */
-			attr[-1] = h->color;
+			attr_buf[attr-1] = h->color;
 			/* h->no? */
 			if (syndebug) {
-				syndebug[-1].recolor.name = syndebug[-1].state.name = h->name;
-				syndebug[-1].recolor.subr = syndebug[-1].state.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+				syndebug_buf[attr-1].recolor.name = syndebug_buf[attr-1].state.name = h->name;
+				syndebug_buf[attr-1].recolor.subr = syndebug_buf[attr-1].state.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
 			}
 
 			/* Get command for this character */
@@ -352,28 +337,28 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 			/* Recolor if necessary */
 			if (recolor_delimiter_or_keyword)
 				for(x= -(buf_idx+1);x<-1;++x) {
-					attr[x-ofst] = h->color;
+					attr_buf[attr+x-ofst] = h->color;
 					if (syndebug) {
-						syndebug[x-ofst].recolor.name = h->name;
-						syndebug[x-ofst].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+						syndebug_buf[attr+x-ofst].recolor.name = h->name;
+						syndebug_buf[attr+x-ofst].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
 					}
 				}
 			for(x=cmd->recolor;x<0;++x)
-				if (attr + x >= attr_buf) {
-					attr[x] = h->color;
+				if (attr + x >= 0) {
+					attr_buf[attr+x] = h->color;
 					if (syndebug) {
-						syndebug[x-ofst].recolor.name = h->name;
-						syndebug[x-ofst].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+						syndebug_buf[attr+x].recolor.name = h->name;
+						syndebug_buf[attr+x].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
 					}
 				}
 
 			/* Mark recoloring */
 			if (cmd->recolor_mark)
 				for(x= -mark1;x<-mark2;++x) {
-					attr[x] = h->color;
+					attr_buf[attr+x] = h->color;
 					if (syndebug) {
-						syndebug[x-ofst].recolor.name = h->name;
-						syndebug[x-ofst].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+						syndebug_buf[attr+x].recolor.name = h->name;
+						syndebug_buf[attr+x].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
 					}
 				}
 
