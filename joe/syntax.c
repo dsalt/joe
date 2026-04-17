@@ -69,7 +69,7 @@ static void realloc_attr_bufs(attr_data **attrp, attr_data **attr_endp, struct s
 	*attr_endp = attr_buf + new_size;
 
 	if (syndebugp) {
-		syndebug_buf = (struct state_debug_data *)joe_realloc(attr_buf, SIZEOF(struct state_debug_data) * new_size);
+		syndebug_buf = (struct state_debug_data *)joe_realloc(syndebug_buf, SIZEOF(struct state_debug_data) * new_size);
 		*syndebugp = syndebug_buf + attr_size;
 	}
 
