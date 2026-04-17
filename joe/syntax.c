@@ -335,32 +335,46 @@ HIGHLIGHT_STATE parse(struct high_syntax *syntax,P *line,HIGHLIGHT_STATE h_state
 			}
 
 			/* Recolor if necessary */
-			if (recolor_delimiter_or_keyword)
-				for(x= -(buf_idx+1);x<-1;++x) {
-					attr_buf[attr+x-ofst] = h->color;
+			{
+				int subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+				ptrdiff_t p;
+
+				if (recolor_delimiter_or_keyword) {
+					p = attr - ofst - 1;
+					for (x = p - buf_idx; x < p; ++x)
+						attr_buf[x] = h->color;
 					if (syndebug) {
-						syndebug_buf[attr+x-ofst].recolor.name = h->name;
-						syndebug_buf[attr+x-ofst].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
-					}
-				}
-			for(x=cmd->recolor;x<0;++x)
-				if (attr + x >= 0) {
-					attr_buf[attr+x] = h->color;
-					if (syndebug) {
-						syndebug_buf[attr+x].recolor.name = h->name;
-						syndebug_buf[attr+x].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+						for (x = p - buf_idx; x < p; ++x) {
+							syndebug_buf[x].recolor.name = h->name;
+							syndebug_buf[x].recolor.subr = subr;
+						}
 					}
 				}
 
-			/* Mark recoloring */
-			if (cmd->recolor_mark)
-				for(x= -mark1;x<-mark2;++x) {
-					attr_buf[attr+x] = h->color;
-					if (syndebug) {
+				p = attr + cmd->recolor;
+				if (p < 0) p = 0;
+				for (x = p; x < attr; ++x)
+					attr_buf[x] = h->color;
+				if (syndebug) {
+					for (x = p; x < attr; ++x) {
 						syndebug_buf[attr+x].recolor.name = h->name;
-						syndebug_buf[attr+x].recolor.subr = (stack && stack->syntax) ? stack->syntax->subr : -1;
+						syndebug_buf[attr+x].recolor.subr = subr;
 					}
 				}
+
+				/* Mark recoloring */
+				if (cmd->recolor_mark) {
+					p = attr - mark2;
+					for (x = attr - mark1; x < p; ++x)
+						attr_buf[x] = h->color;
+					if (syndebug) {
+						for (x = attr - mark1; x < p; ++x) {
+							syndebug_buf[x].recolor.name = h->name;
+							syndebug_buf[x].recolor.subr = subr;
+						}
+					}
+				}
+			}
 
 			/* Push string or character? */
 			if (cmd->push_s || cmd->push_c) {
