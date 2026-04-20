@@ -866,11 +866,11 @@ static struct high_state *load_dfa(struct high_syntax *syntax)
 		c = parse_ws(&p,'#');
 		if (!parse_char(&p, '.')) {
 			if (!parse_ident(&p, bf, SIZEOF(bf))) {
-				if (!zcmp(bf, "ifdef")) {
+				if (!zcmp(bf, "ifdef") || !zcmp(bf, "ifndef")) {
 					struct ifstack *st = (struct ifstack *)joe_malloc(SIZEOF(struct ifstack));
 					st->next = stack;
 					st->else_part = 0;
-					st->ignore = 1;
+					st->ignore = bf[2] != 'n'; /* true if ifdef */
 					st->skip = 1;
 					st->line = line;
 					if (!stack || !stack->ignore) {
@@ -879,7 +879,7 @@ static struct high_state *load_dfa(struct high_syntax *syntax)
 							struct high_param *param;
 							for (param = syntax->params; param; param = param->next)
 								if (!zcmp(param->name, bf)) {
-									st->ignore = 0;
+									st->ignore = !st->ignore;
 									break;
 								}
 							st->skip = 0;

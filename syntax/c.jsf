@@ -162,8 +162,7 @@
 #    "'"	idle 	return
 # .endif
 #
-# .else if also available.  .ifdefs can be nested.
-
+# .else is also available.  .ifdefs and .ifndefs can be nested.
 
 # Obsolete feature: the sync lines specification no longer matter.  We now always parse
 # from the beginning of the file.  Here is the old description:
