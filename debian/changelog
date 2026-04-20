@@ -1,3 +1,21 @@
+joe (4.7-0ds3) unstable; urgency=medium
+
+  * Snapshot, commit a7b2993e3ff7dc325d52e95455663f24e9b67135
+  * Patches dropped (merged).
+
+ -- Darren Salt <devspam@moreofthesa.me.uk>  Mon, 20 Apr 2026 18:51:43 +0100
+
+joe (4.7-0ds2) unstable; urgency=medium
+
+  * A few extra bug fixes. Full patch list:
+    - 57be5f68 (OSC 8 doesn't do UTF-8)
+    - 77d3276b (Debian RFC822-style syntax mode bugs)
+    - 97b48828 (m4 syntax mode bug)
+    - b59abf47 (sh syntax mode bug)
+    - f56f24f8 (NULL deref when setting certain options via JOE command prompt)
+
+ -- Darren Salt <devspam@moreofthesa.me.uk>  Fri, 10 Apr 2026 02:16:17 +0100
+
 joe (4.7-0ds1) unstable; urgency=medium
 
   * New release.

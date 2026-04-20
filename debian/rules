@@ -19,3 +19,6 @@ override_dh_link:
 	for i in jmacs jstar rjoe jpico; do \
           dh_link usr/share/man/man1/joe.1 usr/share/man/man1/$$i.1; \
         done
+
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-instrumentation --enable-silent-rules
