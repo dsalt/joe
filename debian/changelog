@@ -1,3 +1,9 @@
+joe (4.8-0ds1) unstable; urgency=medium
+
+  * New release.
+
+ -- Darren Salt <devspam@moreofthesa.me.uk>  Thu, 23 Apr 2026 16:50:59 +0100
+
 joe (4.7-0ds3) unstable; urgency=medium
 
   * Snapshot, commit 273f44e5929b497c952bf7a849755730c9180976
