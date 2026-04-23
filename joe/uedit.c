@@ -1085,6 +1085,7 @@ int utomatch(W *w, int k)
 		f = '<';
 		dir = -1;
 		break;
+	/* «»‹› Angle quotation marks */
 	case 0xAB:
 		f = 0xBB;
 		dir = 1;
@@ -1093,6 +1094,32 @@ int utomatch(W *w, int k)
 		f = 0xAB;
 		dir = -1;
 		break;
+	case 0x2039:
+		f = 0x203a;
+		dir = 1;
+		break;
+	case 0x203a:
+		f = 0x2039;
+		dir = -1;
+		break;
+	/* ‘‚’‛ Single quotation marks */
+	case 0x2018:
+		f = 0x2019;
+		dir = 1;
+		break;
+	case 0x201a:
+		f = 0x2019;
+		dir = 1;
+		break;
+	case 0x2019:
+		f = 0x2018; // Should look for 0x201a & 0x201b (dir=1) also?
+		dir = -1;
+		break;
+	case 0x201b:
+		f = 0x2019;
+		dir = 1;
+		break;
+	/* “„”‟ Double quotation marks */
 	case 0x201c:
 		f = 0x201d;
 		dir = 1;
@@ -1102,9 +1129,14 @@ int utomatch(W *w, int k)
 		dir = 1;
 		break;
 	case 0x201d:
-		f = 0x201c; // Should look for 0x201e also?
+		f = 0x201c; // Should look for 0x201e & 0x201f (dir=1) also?
 		dir = -1;
 		break;
+	case 0x201f:
+		f = 0x201d;
+		dir = -1;
+		break;
+	/* 「」 Corner brackets */
 	case 0x300c:
 		f = 0x300d;
 		dir = 1;
@@ -1113,6 +1145,7 @@ int utomatch(W *w, int k)
 		f = 0x300c;
 		dir = -1;
 		break;
+	/* ¡!¿? */
 	case 0xa1:
 		f = '!';
 		dir = 1;
@@ -1127,6 +1160,15 @@ int utomatch(W *w, int k)
 		break;
 	case '?':
 		f = 0xbf;
+		dir = -1;
+		break;
+	/* ⸘‽ Interrobang */
+	case 0x2e18:
+		f = 0x203d;
+		dir = 1;
+		break;
+	case 0x203d:
+		f = 0x2e18;
 		dir = -1;
 		break;
 	default:
