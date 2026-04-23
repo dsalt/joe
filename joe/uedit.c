@@ -950,18 +950,20 @@ static void get_delim_name(P *q,int *buf)
 
 int utomatch(W *w, int k)
 {
-	int d;
+	int d, i;
+	int ret = -1;		/* Default return value (fail) */
 	int c,			/* Character under cursor */
 	 f,			/* Character to find */
 	 dir;			/* 1 to search forward, -1 to search backward */
+	P *pos, *prev = NULL, *next = NULL;
 	BW *bw;
 	WIND_BW(bw, w);
 
-	c = brch(bw->cursor);
+	pos = pdup(bw->cursor, "utomatch");
+	c = brch(pos);
 
 	/* Check for word delimiters */
-	if (joe_isalnum_(bw->cursor->b->o.charmap, c)) {
-		P *p;
+	if (joe_isalnum_(pos->b->o.charmap, c)) {
 		int buf[MAX_WORD_SIZE+1];
 		char utf8_buf[MAX_WORD_SIZE * 6 + 1]; /* Possibly UTF-8 version of buf */
 		int buf1[MAX_WORD_SIZE+1];
@@ -970,20 +972,19 @@ int utomatch(W *w, int k)
 		const char *group;
 		const char *word;
 		int flg=0;
-		p=pdup(bw->cursor, "utomatch");
-		p_goto_next(p);
-		p_goto_prev(p);
-		get_delim_name(p,buf);
-		get_xml_name(p,buf1);
-		c=prgetc(p);
+		p_goto_next(pos);
+		p_goto_prev(pos);
+		get_delim_name(pos,buf);
+		get_xml_name(pos,buf1);
+		c=prgetc(pos);
 		if (c=='<')
 			flg = 1;
 		else if (c=='/') {
-			c=prgetc(p);
+			c=prgetc(pos);
 			if (c=='<')
 				flg = -1;
 		}
-		prm(p);
+		prm(pos);
 
 		if (flg) {
 			return tomatch_xml(bw, buf1, flg);
@@ -1012,210 +1013,252 @@ int utomatch(W *w, int k)
 		return dofirst(bw, 0, 0, utf8_buf);
 	}
 
-	switch (c) {
-	case '/':
-		dir = 1;
-		pgetc(bw->cursor);
-		f = brch(bw->cursor);
-		prgetc(bw->cursor);
-		if(f=='*') f = '/';
-		else {
-			dir = -1;
-			f = prgetc(bw->cursor);
-			if (f!=NO_MORE_DATA)
-				pgetc(bw->cursor);
-			if(f=='*') f = '/';
-			else
-				return -1;
+	if (joe_isspace_eos(pos->b->o.charmap, c) || piseol(pos)) {
+		/* Current pos is blank or EOF, so... */
+		prev = pdup(pos, "utomatch");
+		next = pdup(pos, "utomatch");
+
+		/* ... find the nearest following non-blank ... */
+		while (joe_isspace_eos(next->b->o.charmap, brch(next)))
+			if (pgetc(next) == NO_MORE_DATA) break;
+
+		/* ... and the nearest preceding non-blank */
+		if (piseof(prev)) prgetc(prev); /* EOF isn't blank */
+		while (joe_isspace_eos(prev->b->o.charmap, brch(prev)))
+			if (prgetc(prev) == NO_MORE_DATA) break;
+		/* next should have correct col but prev won't */
+		pfcol(prev);
+
+		/* distance: use column if on the same line */
+#define P_DISTANCE(p) ((p)->line == pos->line ? labs((p)->col - pos->col) : labs((p)->byte - pos->byte))
+		/* checking order is pos, prev, next – but we want them ordered by distance */
+		if (P_DISTANCE(next) < P_DISTANCE(prev)) {
+			P *p = prev; prev = next; next = p;
 		}
-		break;
-	case '*':
-		dir = -1;
-		pgetc(bw->cursor);
-		f = brch(bw->cursor);
-		prgetc(bw->cursor);
-		if(f=='/') f = '*';
-		else {
-			dir = 1;
-			f = prgetc(bw->cursor);
-			if (f!=NO_MORE_DATA)
-				pgetc(bw->cursor);
-			if(f=='/') f = '*';
-			else
-				return -1;
-		}
-		break;
-	case '(':
-		f = ')';
-		dir = 1;
-		break;
-	case '[':
-		f = ']';
-		dir = 1;
-		break;
-	case '{':
-		f = '}';
-		dir = 1;
-		break;
-	case '`':
-		f = '\'';
-		dir = 1;
-		break;
-	case '<':
-		f = '>';
-		dir = 1;
-		break;
-	case ')':
-		f = '(';
-		dir = -1;
-		break;
-	case ']':
-		f = '[';
-		dir = -1;
-		break;
-	case '}':
-		f = '{';
-		dir = -1;
-		break;
-	case '\'':
-		f = '`';
-		dir = -1;
-		break;
-	case '>':
-		f = '<';
-		dir = -1;
-		break;
-	/* «»‹› Angle quotation marks */
-	case 0xAB:
-		f = 0xBB;
-		dir = 1;
-		break;
-	case 0xBB:
-		f = 0xAB;
-		dir = -1;
-		break;
-	case 0x2039:
-		f = 0x203a;
-		dir = 1;
-		break;
-	case 0x203a:
-		f = 0x2039;
-		dir = -1;
-		break;
-	/* ‘‚’‛ Single quotation marks */
-	case 0x2018:
-		f = 0x2019;
-		dir = 1;
-		break;
-	case 0x201a:
-		f = 0x2019;
-		dir = 1;
-		break;
-	case 0x2019:
-		f = 0x2018; // Should look for 0x201a & 0x201b (dir=1) also?
-		dir = -1;
-		break;
-	case 0x201b:
-		f = 0x2019;
-		dir = 1;
-		break;
-	/* “„”‟ Double quotation marks */
-	case 0x201c:
-		f = 0x201d;
-		dir = 1;
-		break;
-	case 0x201e:
-		f = 0x201d;
-		dir = 1;
-		break;
-	case 0x201d:
-		f = 0x201c; // Should look for 0x201e & 0x201f (dir=1) also?
-		dir = -1;
-		break;
-	case 0x201f:
-		f = 0x201d;
-		dir = -1;
-		break;
-	/* 「」 Corner brackets */
-	case 0x300c:
-		f = 0x300d;
-		dir = 1;
-		break;
-	case 0x300d:
-		f = 0x300c;
-		dir = -1;
-		break;
-	/* ¡!¿? */
-	case 0xa1:
-		f = '!';
-		dir = 1;
-		break;
-	case '!':
-		f = 0xa1;
-		dir = -1;
-		break;
-	case 0xbf:
-		f = '?';
-		dir = 1;
-		break;
-	case '?':
-		f = 0xbf;
-		dir = -1;
-		break;
-	/* ⸘‽ Interrobang */
-	case 0x2e18:
-		f = 0x203d;
-		dir = 1;
-		break;
-	case 0x203d:
-		f = 0x2e18;
-		dir = -1;
-		break;
-	default:
-		return -1;
 	}
+
+	for (i = 3; i; --i) {
+		P *p = i == 3 ? pos : i == 2 ? prev : next;
+		if (!p)
+			continue;
+		c = brch(p);
+		switch (c) {
+		default:
+			continue;
+		case '/':
+			dir = 1;
+			pgetc(p);
+			f = brch(p);
+			prgetc(p);
+			if(f=='*') f = '/';
+			else {
+				dir = -1;
+				f = prgetc(p);
+				if (f!=NO_MORE_DATA)
+					pgetc(p);
+				if(f=='*') f = '/';
+				else
+					continue;
+			}
+			break;
+		case '*':
+			dir = -1;
+			pgetc(p);
+			f = brch(p);
+			prgetc(p);
+			if(f=='/') f = '*';
+			else {
+				dir = 1;
+				f = prgetc(p);
+				if (f!=NO_MORE_DATA)
+					pgetc(p);
+				if(f=='/') f = '*';
+				else
+					continue;
+			}
+			break;
+		case '(':
+			f = ')';
+			dir = 1;
+			break;
+		case '[':
+			f = ']';
+			dir = 1;
+			break;
+		case '{':
+			f = '}';
+			dir = 1;
+			break;
+		case '`':
+			f = '\'';
+			dir = 1;
+			break;
+		case '<':
+			f = '>';
+			dir = 1;
+			break;
+		case ')':
+			f = '(';
+			dir = -1;
+			break;
+		case ']':
+			f = '[';
+			dir = -1;
+			break;
+		case '}':
+			f = '{';
+			dir = -1;
+			break;
+		case '\'':
+			f = '`';
+			dir = -1;
+			break;
+		case '>':
+			f = '<';
+			dir = -1;
+			break;
+		/* «»‹› Angle quotation marks */
+		case 0xAB:
+			f = 0xBB;
+			dir = 1;
+			break;
+		case 0xBB:
+			f = 0xAB;
+			dir = -1;
+			break;
+		case 0x2039:
+			f = 0x203a;
+			dir = 1;
+			break;
+		case 0x203a:
+			f = 0x2039;
+			dir = -1;
+			break;
+		/* ‘‚’‛ Single quotation marks */
+		case 0x2018:
+			f = 0x2019;
+			dir = 1;
+			break;
+		case 0x201a:
+			f = 0x2019;
+			dir = 1;
+			break;
+		case 0x2019:
+			f = 0x2018; // Should look for 0x201a & 0x201b (dir=1) also?
+			dir = -1;
+			break;
+		case 0x201b:
+			f = 0x2019;
+			dir = 1;
+			break;
+		/* “„”‟ Double quotation marks */
+		case 0x201c:
+			f = 0x201d;
+			dir = 1;
+			break;
+		case 0x201e:
+			f = 0x201d;
+			dir = 1;
+			break;
+		case 0x201d:
+			f = 0x201c; // Should look for 0x201e & 0x201f (dir=1) also?
+			dir = -1;
+			break;
+		case 0x201f:
+			f = 0x201d;
+			dir = -1;
+			break;
+		/* 「」 Corner brackets */
+		case 0x300c:
+			f = 0x300d;
+			dir = 1;
+			break;
+		case 0x300d:
+			f = 0x300c;
+			dir = -1;
+			break;
+		/* ¡!¿? */
+		case 0xa1:
+			f = '!';
+			dir = 1;
+			break;
+		case '!':
+			f = 0xa1;
+			dir = -1;
+			break;
+		case 0xbf:
+			f = '?';
+			dir = 1;
+			break;
+		case '?':
+			f = 0xbf;
+			dir = -1;
+			break;
+		/* ⸘‽ Interrobang */
+		case 0x2e18:
+			f = 0x203d;
+			dir = 1;
+			break;
+		case 0x203d:
+			f = 0x2e18;
+			dir = -1;
+			break;
+		}
+		/* if we get here, we have a match */
+		/* if it's not at the initial cursor position, move there & return */
+		if (p != pos) {
+			pset(bw->cursor, p);
+			ret = 0;
+			goto ret;
+		}
+		/* otherwise, try to match the other end */
+		break;
+	}
+	if (!i) goto ret; /* no match */
 
 	/* Search for matching C comment */
 	if (f == '/' || f == '*') {
-		P *p = pdup(bw->cursor, "utomatch");
 		if (dir == 1) {
-			d = pgetc(p);
+			d = pgetc(pos);
 			do {
 				do {
 					if (d == '*') break;
-				} while ((d = pgetc(p)) != NO_MORE_DATA);
-				d = pgetc(p);
+				} while ((d = pgetc(pos)) != NO_MORE_DATA);
+				d = pgetc(pos);
 			} while (d != NO_MORE_DATA && d != '/');
 			if (d == '/') {
 				if (f == '*') {
-					prgetc(p);
+					prgetc(pos);
 				}
-				pset(bw->cursor,p);
+				pset(bw->cursor,pos);
 				prgetc(bw->cursor);
 			}
 		} else {
-			d = prgetc(p);
+			d = prgetc(pos);
 			do {
 				do {
 					if (d == '*') break;
-				} while ((d = prgetc(p)) != NO_MORE_DATA);
-				d = prgetc(p);
+				} while ((d = prgetc(pos)) != NO_MORE_DATA);
+				d = prgetc(pos);
 			} while (d != NO_MORE_DATA && d != '/');
 			if (d == '/') {
 				if (f == '*') {
-					pgetc(p);
+					pgetc(pos);
 				}
-				pset(bw->cursor,p);
+				pset(bw->cursor,pos);
 			}
 		}
-		prm(p);
-		if (d == NO_MORE_DATA)
-			return -1;
-		else
-			return 0;
+		ret = -(d == NO_MORE_DATA);
+	} else {
+		pset(bw->cursor, pos);
+		ret = tomatch_char(bw, c, f, dir);
 	}
 
-	return tomatch_char(bw, c, f, dir);
+  ret:
+	prm(pos);
+	if (prev) prm(prev);
+	if (next) prm(next);
+	return ret;
 }
 
 /* Move cursor up */
