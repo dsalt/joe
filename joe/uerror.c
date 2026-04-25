@@ -23,7 +23,7 @@ ERROR *errptr = &errors;	/* Current error row */
 
 B *errbuf = NULL;		/* Buffer with error messages */
 
-int parserr_homeonly = 1;	/* compiler errors: ignore file paths outside home directory */
+bool parserr_homeonly = true;	/* compiler errors: ignore file paths outside home directory */
 
 /* Function which allows stepping through all error buffers,
    for multi-file search and replace.  Give it a buffer.  It finds next

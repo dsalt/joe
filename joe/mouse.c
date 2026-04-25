@@ -26,11 +26,11 @@ int auto_scroll = 0;		/* Set for autoscroll */
 ptrdiff_t auto_rate;		/* Rate */
 long auto_trig_time;		/* Time of next scroll */
 
-int rtbutton=0;			/* use button 3 instead of 1 */
-int floatmouse=0;		/* don't fix xcol after tomouse */
-int joexterm=0;			/* set if we're using Joe's modified xterm */
+bool rtbutton=0;			/* use button 3 instead of 1 */
+bool floatmouse=0;		/* don't fix xcol after tomouse */
+bool joexterm=0;			/* set if we're using Joe's modified xterm */
 
-static int selecting = 0;	/* Set if we did any selecting */
+static bool selecting = 0;	/* Set if we did any selecting */
 
 static int Cb;
 static ptrdiff_t Cx, Cy;
@@ -128,8 +128,9 @@ static int mouse_event(W *w)
 
 int uxtmouse(W *w, int k)
 {
-	Cb = (unsigned char)ttgetc() - 32;
-	if (Cb < 0)
+	int cb = (unsigned char)ttgetc();
+	Cb = cb - 32;
+	if (cb < 32) /* this construction avoids a signed overflow warning */
 		return -1;
 	if (Cb == 3)
 		Cb = Cb_RELEASE;

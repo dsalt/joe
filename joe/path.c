@@ -253,7 +253,7 @@ char *mktmp(const char *where)
 	return name;
 }
 /********************************************************************/
-int rmatch(const char *a, const char *b)
+bool rmatch(const char *a, const char *b)
 {
 	int flag, inv, c;
 
@@ -304,7 +304,7 @@ int rmatch(const char *a, const char *b)
 		}
 }
 /********************************************************************/
-int isreg(const char *s)
+bool isreg(const char *s)
 {
 	int x;
 
@@ -492,7 +492,7 @@ char *simplify_prefix(const char *s)
 	const char *t = getenv("HOME");
 	char *n;
 
-#ifdef junk
+#if 0
 	char *org = pwd();
 	/* Normalize home */
 	if (t && !chpwd(t)) {

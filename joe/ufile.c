@@ -15,13 +15,13 @@
 #endif
 #endif
 
-int orphan;
+bool orphan;
 const char *backpath = NULL;	/* Place to store backup files */
 const char *backup_file_suffix = "~";
 B *filehist = NULL;	/* History of file names */
-int nobackups = 0;
-int exask = 0;
-extern int noexmsg;
+bool nobackups = 0;
+bool exask = 0;
+//extern int noexmsg;
 
 /* Ending message generator */
 /**** message which is shown after closing joe (CTRL+x; CTRL+k) *****/
@@ -1208,7 +1208,7 @@ int ulose(W *w, int k)
 
 /* Buffer list */
 
-#ifdef junk
+#if 0
 
 static int dobuf(MENU *m, int x, char **s)
 {

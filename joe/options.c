@@ -28,56 +28,56 @@ OPTIONS pdefault = {
 	NULL,		/* *next */
 	"prompt",	/* ftype */
 	NULL,		/* *match */
-	0,		/* overtype */
 	0,		/* lmargin */
 	76,		/* rmargin */
-	0,		/* autoindent */
-	0,		/* wordwrap */
-	0,		/* nobackup */
-	8,		/* tab */
+	false,		/* overtype */
+	false,		/* autoindent */
+	false,		/* wordwrap */
+	false,		/* nobackup */
 	' ',		/* indent char */
+	8,		/* tab */
 	1,		/* indent step */
 	NULL,		/* *context */
 	NULL,		/* *lmsg */
 	NULL,		/* *rmsg */
 	NULL,		/* *smsg */
 	NULL,		/* *zmsg */
-	0,		/* line numbers */
-	0,		/* highlight current line */
-	0,		/* read only */
-	0,		/* french spacing */
-	0,		/* flowed text */
-	0,		/* spaces */
-#ifdef __MSDOS__
-	1,		/* crlf */
-#else
-	0,		/* crlf */
-#endif
-	0,		/* Highlight */
-	0,		/* Visible whitespace */
-	0,		/* Syntax debugging */
 	NULL,		/* Syntax name */
 	NULL,		/* Syntax */
 	NULL,		/* Name of character set */
 	NULL,		/* Character set */
 	NULL,		/* Language */
-	0,		/* Smart home key */
-	0,		/* Goto indent first */
-	0,		/* Smart backspace key */
-	0,		/* Purify indentation */
-	0,		/* Picture mode */
-	0,		/* highlighter_context */
-	0,		/* single_quoted */
-	0,		/* no_double_quoted */
-	0,		/* c_comment */
-	0,		/* cpp_comment */
-	0,		/* hash_comment */
-	0,		/* vhdl_comment */
-	0,		/* semi_comment */
-	0,		/* tex_comment */
-	0,		/* hex */
-	0,		/* hide ansi */
-	0,		/* status line context */
+	false,		/* line numbers */
+	false,		/* highlight current line */
+	false,		/* read only */
+	false,		/* french spacing */
+	false,		/* flowed text */
+	false,		/* spaces */
+#ifdef __MSDOS__
+	true,		/* crlf */
+#else
+	false,		/* crlf */
+#endif
+	false,		/* Highlight */
+	false,		/* Visible whitespace */
+	0,		/* Syntax debugging */
+	false,		/* Smart home key */
+	false,		/* Goto indent first */
+	false,		/* Smart backspace key */
+	false,		/* Purify indentation */
+	false,		/* Picture mode */
+	false,		/* highlighter_context */
+	false,		/* single_quoted */
+	false,		/* no_double_quoted */
+	false,		/* c_comment */
+	false,		/* cpp_comment */
+	false,		/* hash_comment */
+	false,		/* vhdl_comment */
+	false,		/* semi_comment */
+	false,		/* tex_comment */
+	false,		/* hex */
+	false,		/* hide ansi */
+	false,		/* status line context */
 	NULL,		/* text_delimiters */
 	NULL,		/* Characters which can indent paragraphs */
 	NULL,		/* Characters which begin non-paragraph lines */
@@ -94,56 +94,56 @@ OPTIONS fdefault = {
 	NULL,		/* *next */
 	"default",	/* ftype */
 	NULL,		/* *match */
-	0,		/* overtype */
 	0,		/* lmargin */
 	76,		/* rmargin */
-	0,		/* autoindent */
-	0,		/* wordwrap */
-	0,		/* nobackup */
-	8,		/* tab */
+	false,		/* overtype */
+	false,		/* autoindent */
+	false,		/* wordwrap */
+	false,		/* nobackup */
 	' ',		/* indent char */
+	8,		/* tab */
 	1,		/* indent step */
 	"main",		/* *context */
 	"\\i%n %m %M",	/* *lmsg */
 	" %S Ctrl-K H for help",	/* *rmsg */
 	NULL,		/* *smsg */
 	NULL,		/* *zmsg */
-	0,		/* line numbers */
-	0,		/* higlight current line */
-	0,		/* read only */
-	0,		/* french spacing */
-	0,		/* flowed text */
-	0,		/* spaces */
-#ifdef __MSDOS__
-	1,		/* crlf */
-#else
-	0,		/* crlf */
-#endif
-	0,		/* Highlight */
-	0,		/* Visible whitespace */
-	0,		/* Syntax debugging */
 	NULL,		/* Syntax name */
 	NULL,		/* Syntax */
 	NULL,		/* Name of character set */
 	NULL,		/* Character set */
 	NULL,		/* Language */
-	0,		/* Smart home key */
-	0,		/* Goto indent first */
-	0,		/* Smart backspace key */
-	0,		/* Purity indentation */
-	0,		/* Picture mode */
-	0,		/* highlighter_context */
-	0,		/* single_quoted */
-	0,		/* no_double_quoted */
-	0,		/* c_comment */
-	0,		/* cpp_comment */
-	0,		/* hash_comment */
-	0,		/* vhdl_comment */
-	0,		/* semi_comment */
-	0,		/* tex_comment */
-	0,		/* hex */
-	0,		/* hide ansi */
-	0,		/* status line context */
+	false,		/* line numbers */
+	false,		/* higlight current line */
+	false,		/* read only */
+	false,		/* french spacing */
+	false,		/* flowed text */
+	false,		/* spaces */
+#ifdef __MSDOS__
+	true,		/* crlf */
+#else
+	false,		/* crlf */
+#endif
+	false,		/* Highlight */
+	false,		/* Visible whitespace */
+	0,		/* Syntax debugging */
+	false,		/* Smart home key */
+	false,		/* Goto indent first */
+	false,		/* Smart backspace key */
+	false,		/* Purity indentation */
+	false,		/* Picture mode */
+	false,		/* highlighter_context */
+	false,		/* single_quoted */
+	false,		/* no_double_quoted */
+	false,		/* c_comment */
+	false,		/* cpp_comment */
+	false,		/* hash_comment */
+	false,		/* vhdl_comment */
+	false,		/* semi_comment */
+	false,		/* tex_comment */
+	false,		/* hex */
+	false,		/* hide ansi */
+	false,		/* status line context */
 	NULL,		/* text_delimiters */
 	">;!#%/",	/* Characters which can indent paragraphs */
 	".",	/* Characters which begin non-paragraph lines */
@@ -201,41 +201,43 @@ void lazy_opts(B *b, OPTIONS *o)
 	if (!b->o.language)
 		b->o.language = locale_msgs;
 	if (b->o.hex) {
+		b->o.hex_saved = 0;
+
 		/* Hex not allowed with UTF-8 */
 		if (b->o.charmap->type) {
 			b->o.charmap = find_charmap("c");
-			b->o.hex |= HEX_RESTORE_UTF8;
+			b->o.hex_saved |= HEX_RESTORE_UTF8;
 		}
 
 		/* Hex not allowed with CRLF */
 		if (b->o.crlf) {
 			b->o.crlf = 0;
-			b->o.hex |= HEX_RESTORE_CRLF;
+			b->o.hex_saved |= HEX_RESTORE_CRLF;
 		}
 
 		if (!b->o.overtype) {
 			b->o.overtype = 1;
-			b->o.hex |= HEX_RESTORE_INSERT;
+			b->o.hex_saved |= HEX_RESTORE_INSERT;
 		}
 
 		if (b->o.wordwrap) {
 			b->o.wordwrap = 0;
-			b->o.hex |= HEX_RESTORE_WORDWRAP;
+			b->o.hex_saved |= HEX_RESTORE_WORDWRAP;
 		}
 
 		if (b->o.autoindent) {
 			b->o.autoindent = 0;
-			b->o.hex |= HEX_RESTORE_AUTOINDENT;
+			b->o.hex_saved |= HEX_RESTORE_AUTOINDENT;
 		}
 
 		if (b->o.ansi) {
 			b->o.ansi = 0;
-			b->o.hex |= HEX_RESTORE_ANSI;
+			b->o.hex_saved |= HEX_RESTORE_ANSI;
 		}
 
 		if (b->o.picture) {
 			b->o.picture = 0;
-			b->o.hex |= HEX_RESTORE_PICTURE;
+			b->o.hex_saved |= HEX_RESTORE_PICTURE;
 		}
 	}
 
@@ -300,11 +302,13 @@ enum opt_type {
 union opt_storage_p {
 	void  *v;
 	char  *c;
-	int   *b; /* bool */
+	bool  *b;
 	int   *i;
 	off_t *o;
 	char **s;
 };					/* Address of global option */
+
+#define MAXSCRN 1024		/* Larget reasonable number for many screen related settings */
 
 struct glopts {
 	const char *name;		/* Option name */
@@ -326,9 +330,9 @@ struct glopts {
 	{"title",               LOC_OPT_BOOL, { NULL }, (char *) &fdefault.title, _("Status line context enabled"), _("Status line context disabled"), _("Status line context display mode"), 0, 0, 0 },
 	{"autoindent",          LOC_OPT_BOOL, { NULL }, (char *) &fdefault.autoindent, _("Autoindent enabled"), _("Autoindent disabled"), _("Autoindent mode"), 0, 0, 0 },
 	{"wordwrap",            LOC_OPT_BOOL, { NULL }, (char *) &fdefault.wordwrap, _("Wordwrap enabled"), _("Wordwrap disabled"), _("Word wrap mode"), 0, 0, 0 },
-	{"tab",                 LOC_OPT_OFFSET, { NULL }, (char *) &fdefault.tab, _("Tab width (%lld): "), 0, _("Tab width"), 0, 1, 64 },
-	{"lmargin",             LOC_OPT_RANGE, { NULL }, (char *) &fdefault.lmargin, _("Left margin (%d): "), 0, _("Left margin "), 0, 0, 63 },
-	{"rmargin",             LOC_OPT_RANGE, { NULL }, (char *) &fdefault.rmargin, _("Right margin (%d): "), 0, _("Right margin "), 0, 7, 255 },
+	{"tab",                 LOC_OPT_OFFSET, { NULL }, (char *) &fdefault.tab, _("Tab width (%lld): "), 0, _("Tab width"), 0, 1, MAXSCRN },
+	{"lmargin",             LOC_OPT_RANGE, { NULL }, (char *) &fdefault.lmargin, _("Left margin (%d): "), 0, _("Left margin "), 0, 0, MAXSCRN },
+	{"rmargin",             LOC_OPT_RANGE, { NULL }, (char *) &fdefault.rmargin, _("Right margin (%d): "), 0, _("Right margin "), 0, 7, MAXSCRN },
 	{"restore",             GLO_OPT_BOOL, { &restore_file_pos }, NULL, _("Restore cursor position when files loaded"), _("Don't restore cursor when files loaded"), _("Restore cursor mode"), 0, 0, 0 },
 	{"regex",               GLO_OPT_BOOL, { &std_regex }, NULL, _("Standard regular expression format"), _("JOE regular expression format"), _("Standard or JOE regular expression syntax"), 0, 0, 0 },
 	{"square",              GLO_OPT_BOOL, { &square }, NULL, _("Rectangle mode"), _("Text-stream mode"), _("Rectangular region mode"), 0, 0, 0 },
@@ -342,14 +346,14 @@ struct glopts {
 	{"menu_jump",           GLO_OPT_BOOL, { &menu_jump }, NULL, _("Jump into menu is on"), _("Jump into menu is off"), _("Jump into menu mode"), 0, 0, 0 },
 	{"autoswap",            GLO_OPT_BOOL, { &autoswap }, NULL, _("Autoswap ^KB and ^KK"), _("Autoswap off "), _("Autoswap mode "), 0, 0, 0 },
 	{"indentc",             LOC_OPT_INT, { NULL }, (char *) &fdefault.indentc, _("Indent char %d (SPACE=32, TAB=9, %{abort} to abort): "), 0, _("Indent char "), 0, 0, 255 },
-	{"istep",               LOC_OPT_OFFSET, { NULL }, (char *) &fdefault.istep, _("Indent step %lld (%{abort} to abort): "), 0, _("Indent step "), 0, 1, 64 },
+	{"istep",               LOC_OPT_OFFSET, { NULL }, (char *) &fdefault.istep, _("Indent step %lld (%{abort} to abort): "), 0, _("Indent step "), 0, 1, MAXSCRN },
 	{"french",              LOC_OPT_BOOL, { NULL }, (char *) &fdefault.french, _("One space after periods for paragraph reformat"), _("Two spaces after periods for paragraph reformat"), _("French spacing mode"), 0, 0, 0 },
 	{"flowed",              LOC_OPT_BOOL, { NULL }, (char *) &fdefault.flowed, _("One space after paragraph line"), _("No spaces after paragraph lines"), _("Flowed text mode"), 0, 0, 0 },
 	{"highlight",           LOC_OPT_BOOL, { NULL }, (char *) &fdefault.highlight, _("Highlighting enabled"), _("Highlighting disabled"), _("Syntax highlighting mode"), 0, 0, 0 },
 	{"spaces",              LOC_OPT_BOOL, { NULL }, (char *) &fdefault.spaces, _("Inserting spaces when tab key is hit"), _("Inserting tabs when tab key is hit"), _("No tabs mode"), 0, 0, 0 },
 	{"mid",                 GLO_OPT_BOOL, { &opt_mid }, NULL, _("Cursor will be recentered on scrolls"), _("Cursor will not be recentered on scroll"), _("Center on scroll mode"), 0, 0, 0 },
-	{"left",                GLO_OPT_INT, { &opt_left }, NULL, _("Columns to scroll left or -1 for 1/2 window (%d): "), 0, _("Left scroll amount"), 0, -128, 127 },
-	{"right",               GLO_OPT_INT, { &opt_right }, NULL, _("Columns to scroll right or -1 for 1/2 window (%d): "), 0, _("Right scroll amount"), 0, -128, 127 },
+	{"left",                GLO_OPT_INT, { &opt_left }, NULL, _("Columns to scroll left or -1 for 1/2 window (%d): "), 0, _("Left scroll amount"), 0, -1, MAXSCRN },
+	{"right",               GLO_OPT_INT, { &opt_right }, NULL, _("Columns to scroll right or -1 for 1/2 window (%d): "), 0, _("Right scroll amount"), 0, -1, MAXSCRN },
 	{"guess_crlf",          GLO_OPT_BOOL, { &guesscrlf }, NULL, _("Automatically detect MS-DOS files"), _("Do not automatically detect MS-DOS files"), _("Auto detect CR-LF mode"), 0, 0, 0 },
 	{"guess_indent",        GLO_OPT_BOOL, { &guessindent }, NULL, _("Automatically detect indentation"), _("Do not automatically detect indentation"), _("Guess indent mode"), 0, 0, 0 },
 	{"guess_non_utf8",      GLO_OPT_BOOL, { &guess_non_utf8 }, NULL, _("Automatically detect non-UTF-8 in UTF-8 locale"), _("Do not automatically detect non-UTF-8"), _("Guess non-UTF-8 mode"), 0, 0, 0 },
@@ -376,8 +380,8 @@ struct glopts {
 	{"beep",                GLO_OPT_BOOL, { &joe_beep }, NULL, _("Warning bell enabled"), _("Warning bell disabled"), _("Beeps "), 0, 0, 0 },
 	{"nosta",               GLO_OPT_BOOL, { &staen }, NULL, _("Top-most status line disabled"), _("Top-most status line enabled"), _("Disable status line "), 0, 0, 0 },
 	{"keepup",              GLO_OPT_BOOL, { &keepup }, NULL, _("Status line updated constantly"), _("Status line updated once/sec"), _("Fast status line "), 0, 0, 0 },
-	{"pg",                  GLO_OPT_INT, { &pgamnt }, NULL, _("Lines to keep for PgUp/PgDn or -1 for 1/2 window (%d): "), 0, _("No. PgUp/PgDn lines "), 0, -1, 64 },
-	{"undo_keep",           GLO_OPT_INT, { &undo_keep }, NULL, _("No. undo records to keep, or (0 for infinite): "), 0, _("No. undo records "), 0, -1, 64 },
+	{"pg",                  GLO_OPT_INT, { &pgamnt }, NULL, _("Lines to keep for PgUp/PgDn or -1 for 1/2 window (%d): "), 0, _("No. PgUp/PgDn lines "), 0, -1, MAXSCRN },
+	{"undo_keep",           GLO_OPT_INT, { &undo_keep }, NULL, _("No. undo records to keep, or (0 for infinite): "), 0, _("No. undo records "), 0, 0, MAXINT },
 	{"csmode",              GLO_OPT_BOOL, { &csmode }, NULL, _("Start search after a search repeats previous search"), _("Start search always starts a new search"), _("Continued search "), 0, 0, 0 },
 	{"rdonly",              LOC_OPT_BOOL, { NULL }, (char *) &fdefault.readonly, _("Read only"), _("Full editing"), _("Read only "), 0, 0, 0 },
 	{"smarthome",           LOC_OPT_BOOL, { NULL }, (char *) &fdefault.smarthome, _("Smart home key enabled"), _("Smart home key disabled"), _("Smart home key "), 0, 0, 0 },
@@ -415,10 +419,10 @@ struct glopts {
 	{"orphan",              GLO_OPT_BOOL, { &orphan }, NULL, 0, 0, _("Orphan extra files"), 0, 0, 0 },
 	{"helpon",              GLO_OPT_BOOL, { &helpon }, NULL, 0, 0, _("Start editor with help displayed"), 0, 0, 0 },
 	{"dopadding",           GLO_OPT_BOOL, { &dopadding }, NULL, 0, 0, _("Emit padding NULs"), 0, 0, 0 },
-	{"lines",               GLO_OPT_INT, { &env_lines }, NULL, 0, 0, _("No. screen lines (if no window size ioctl)"), 0, 2, 1024 },
-	{"baud",                GLO_OPT_INT, { &Baud }, NULL, 0, 0, _("Baud rate"), 0, 50, 32767 },
-	{"columns",             GLO_OPT_INT, { &env_columns }, NULL, 0, 0, _("No. screen columns (if no window size ioctl)"), 0, 2, 1024 },
-	{"skiptop",             GLO_OPT_INT, { &skiptop }, NULL, 0, 0, _("No. screen lines to skip"), 0, 0, 64 },
+	{"lines",               GLO_OPT_INT, { &env_lines }, NULL, 0, 0, _("No. screen lines (if no window size ioctl)"), 0, 2, MAXSCRN },
+	{"baud",                GLO_OPT_INT, { &Baud }, NULL, 0, 0, _("Baud rate"), 0, 50, 4000000 },
+	{"columns",             GLO_OPT_INT, { &env_columns }, NULL, 0, 0, _("No. screen columns (if no window size ioctl)"), 0, 2, MAXSCRN },
+	{"skiptop",             GLO_OPT_INT, { &skiptop }, NULL, 0, 0, _("No. screen lines to skip"), 0, 0, MAXSCRN },
 	{"notite",              GLO_OPT_BOOL, { &notite }, NULL, 0, 0, _("Suppress tty init sequence"), 0, 0, 0 },
 	{"brpaste",             GLO_OPT_BOOL, { &brpaste }, NULL, 0, 0, _("Bracketed paste mode"), 0, 0, 0 },
 	{"pastehack",           GLO_OPT_BOOL, { &pastehack }, NULL, 0, 0, _("Paste quoting hack"), 0, 0, 0 },
@@ -705,7 +709,7 @@ int glopt(char *s, char *arg, OPTIONS *options, int set)
 			break;
 		case LOC_OPT_BOOL: /* Local option flag */
 			if (options)
-				*OPTPTR(options, opt->ofst, int) = st;
+				*OPTPTR(options, opt->ofst, bool) = st;
 			ret = 1;
 			break;
 		case LOC_OPT_INT: /* Local option integer */
@@ -971,7 +975,7 @@ static int doopt1(W *w, char *s, void *obj, int *notify)
 			*glopts[x].set.s = zdup(s);
 		break;
 	case LOC_OPT_STRING:
-		*(char **)((char *)&bw->o+glopts[x].ofst) = zdup(s);
+		*OPTPTR(&bw->o, glopts[x].ofst, char *) = zdup(s);
 		break;
 	case LOC_OPT_INT:
 		v = (int)calc(bw, s, 0);
@@ -979,7 +983,7 @@ static int doopt1(W *w, char *s, void *obj, int *notify)
 			msgnw(bw->parent, merr);
 			ret = -1;
 		} else if (v >= glopts[x].low && v <= glopts[x].high)
-			*(int *) ((char *) &bw->o + glopts[x].ofst) = v;
+			*OPTPTR(&bw->o, glopts[x].ofst, int) = v;
 		else {
 			msgnw(bw->parent, joe_gettext(_("Value out of range")));
 			ret = -1;
@@ -991,7 +995,7 @@ static int doopt1(W *w, char *s, void *obj, int *notify)
 			msgnw(bw->parent, merr);
 			ret = -1;
 		} else if (vv >= glopts[x].low && vv <= glopts[x].high)
-			*(off_t *) ((char *) &bw->o + glopts[x].ofst) = vv;
+			*OPTPTR(&bw->o, glopts[x].ofst, off_t) = vv;
 		else {
 			msgnw(bw->parent, joe_gettext(_("Value out of range")));
 			ret = -1;
@@ -1003,7 +1007,7 @@ static int doopt1(W *w, char *s, void *obj, int *notify)
 			msgnw(bw->parent, merr);
 			ret = -1;
 		} else if (vv >= glopts[x].low && vv <= glopts[x].high)
-			*(off_t *) ((char *) &bw->o + glopts[x].ofst) = vv;
+			*OPTPTR(&bw->o, glopts[x].ofst, off_t) = vv;
 		else {
 			msgnw(bw->parent, joe_gettext(_("Value out of range")));
 			ret = -1;
@@ -1259,9 +1263,9 @@ static int find_option(char *s)
 	return -1;
 }
 
-static int applyopt(BW *bw, int *optp, int y, int flg)
+static int applyopt(BW *bw, bool *optp, int y, int flg)
 {
-	int oldval, newval;
+	bool oldval, newval;
 	const char *msg;
 
 	oldval = *optp;
@@ -1303,7 +1307,7 @@ static int olddoopt(BW *bw, int y, int flg, int *notify)
 			applyopt(bw, glopts[y].set.b, y, flg);
 			break;
 		case LOC_OPT_BOOL:
-			oldval = applyopt(bw, OPTPTR(&bw->o, glopts[y].ofst, int), y, flg);
+			oldval = applyopt(bw, OPTPTR(&bw->o, glopts[y].ofst, bool), y, flg);
 
 			/* Propagate readonly bit to B */
 			if (glopts[y].ofst == offsetof(OPTIONS, readonly))
@@ -1311,43 +1315,46 @@ static int olddoopt(BW *bw, int y, int flg, int *notify)
 
 			/* Kill UTF-8 and CRLF modes if we switch to hex display */
 			if (glopts[y].ofst == offsetof(OPTIONS, hex)) {
+				oldval = bw->o.hex_saved;
+
 				if (bw->o.hex && !oldval) {
 					bw->o.hex = 1;
+					bw->o.hex_saved = 0;
 					if (bw->b->o.charmap->type) {
 						/* Switch out of UTF-8 mode */
 						doencoding(bw->parent, vsncpy(NULL, 0, sc("C")), NULL, NULL);
-						bw->o.hex |= HEX_RESTORE_UTF8;
+						bw->o.hex_saved |= HEX_RESTORE_UTF8;
 					}
 
 					if (bw->o.crlf) {
 						/* Switch out of CRLF mode */
 						bw->o.crlf = 0;
-						bw->o.hex |= HEX_RESTORE_CRLF;
+						bw->o.hex_saved |= HEX_RESTORE_CRLF;
 					}
 
 					if (!bw->o.overtype) {
 						bw->o.overtype = 1;
-						bw->o.hex |= HEX_RESTORE_INSERT;
+						bw->o.hex_saved |= HEX_RESTORE_INSERT;
 					}
 
 					if (bw->o.wordwrap) {
 						bw->o.wordwrap = 0;
-						bw->o.hex |= HEX_RESTORE_WORDWRAP;
+						bw->o.hex_saved |= HEX_RESTORE_WORDWRAP;
 					}
 
 					if (bw->o.autoindent) {
 						bw->o.autoindent = 0;
-						bw->o.hex |= HEX_RESTORE_AUTOINDENT;
+						bw->o.hex_saved |= HEX_RESTORE_AUTOINDENT;
 					}
 
 					if (bw->o.ansi) {
 						bw->o.ansi = 0;
-						bw->o.hex |= HEX_RESTORE_ANSI;
+						bw->o.hex_saved |= HEX_RESTORE_ANSI;
 					}
 
 					if (bw->o.picture) {
 						bw->o.picture = 0;
-						bw->o.hex |= HEX_RESTORE_PICTURE;
+						bw->o.hex_saved |= HEX_RESTORE_PICTURE;
 					}
 					/* Try to put entire hex dump on screen in case where we were
 					   scrolled far to the right */
@@ -1386,8 +1393,8 @@ static int olddoopt(BW *bw, int y, int flg, int *notify)
 		case LOC_OPT_STRING:
 			xx = (int *) joe_malloc(SIZEOF(int));
 			*xx = y;
-			if(*(char **)((char *)&bw->o+glopts[y].ofst))
-				joe_snprintf_1(buf, OPT_BUF_SIZE, glopts[y].yes,*(char **)((char *)&bw->o+glopts[y].ofst));
+			if(*OPTPTR(&bw->o, glopts[y].ofst, char *))
+				joe_snprintf_1(buf, OPT_BUF_SIZE, glopts[y].yes, *OPTPTR(&bw->o, glopts[y].ofst, char *));
 			else
 				joe_snprintf_1(buf, OPT_BUF_SIZE, glopts[y].yes,"");
 			if(wmkpw(bw->parent, buf, NULL, doopt1, NULL, doabrt1, utypebw, xx, notify, utf8_map, 0))
@@ -1429,13 +1436,17 @@ static int olddoopt(BW *bw, int y, int flg, int *notify)
 			else
 				return -1;
 		case LOC_OPT_INT:
-			joe_snprintf_1(buf, OPT_BUF_SIZE, joe_gettext(glopts[y].yes), *(int *) ((char *) &bw->o + glopts[y].ofst));
+			joe_snprintf_1(buf, OPT_BUF_SIZE, joe_gettext(glopts[y].yes), *OPTPTR(&bw->o, glopts[y].ofst, int));
 			goto in;
 		case LOC_OPT_OFFSET:
-			joe_snprintf_1(buf, OPT_BUF_SIZE, joe_gettext(glopts[y].yes), (long long)*(off_t *) ((char *) &bw->o + glopts[y].ofst));
+#ifdef HAVE_LONG_LONG
+			joe_snprintf_1(buf, OPT_BUF_SIZE, joe_gettext(glopts[y].yes), (long long)*OPTPTR(&bw->o, glopts[y].ofst, off_t));
+#else
+			joe_snprintf_1(buf, OPT_BUF_SIZE, joe_gettext(glopts[y].yes), (long)*OPTPTR(&bw->o, glopts[y].ofst, off_t));
+#endif
 			goto in;
 		case LOC_OPT_RANGE:
-			joe_snprintf_1(buf, OPT_BUF_SIZE, joe_gettext(glopts[y].yes), *(int *) ((char *) &bw->o + glopts[y].ofst) + 1);
+			joe_snprintf_1(buf, OPT_BUF_SIZE, joe_gettext(glopts[y].yes), *OPTPTR(&bw->o, glopts[y].ofst, int) + 1);
 		      in:xx = (int *) joe_malloc(SIZEOF(int));
 
 			*xx = y;
@@ -1501,7 +1512,7 @@ const char *get_status(BW *bw, char *s)
 				joe_snprintf_1(buf, OPT_BUF_SIZE, "%s", *glopts[y].set.s ? *glopts[y].set.s : "");
 				return buf;
 			case LOC_OPT_BOOL:
-				return *(int *) ((char *) &bw->o + glopts[y].ofst) ? "ON" : "OFF";
+				return *OPTPTR(&bw->o, glopts[y].ofst, bool) ? "ON" : "OFF";
 			case LOC_OPT_INT:
 				joe_snprintf_1(buf, OPT_BUF_SIZE, "%d", *OPTPTR(&bw->o, glopts[y].ofst, int));
 				return buf;

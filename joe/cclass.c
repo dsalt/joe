@@ -646,8 +646,8 @@ void rtree_opt(struct Rtree *r)
 
 	/* De-duplicate leaf nodes (it's not worth bothering with interior nodes) */
 
-	equiv = r->leaf.alloc ? (int *)joe_malloc(SIZEOF(int) * r->leaf.alloc) : NULL;
-	repl = r->leaf.alloc ? (short *)joe_malloc(SIZEOF(short) * r->leaf.alloc) : NULL;
+	equiv = (int *)joe_malloc(SIZEOF(int) * r->leaf.alloc);
+	repl = (short *)joe_malloc(SIZEOF(short) * r->leaf.alloc);
 
 	/* Create hash table index of all the leaf nodes */
 	dupcount = 0;

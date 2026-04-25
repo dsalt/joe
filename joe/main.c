@@ -13,12 +13,12 @@
 
 char *exmsg = NULL;		/* Message to display when exiting the editor */
 char *xmsg;			/* Message to display when starting the editor */
-int usexmouse=0;
-int xmouse=0;
-int nonotice;
-int noexmsg = 0;
-int pastehack;
-int helpon;
+bool usexmouse=0;
+bool xmouse=0;
+bool nonotice;
+bool noexmsg = 0;
+bool pastehack;
+bool helpon;
 
 Screen *maint;			/* Main edit screen */
 
@@ -123,9 +123,9 @@ int edloop(int flg)
 		MACRO *m;
 		BW *bw;
 		int c;
-		int auto_off = 0;
-		int word_off = 0;
-		int spaces_off = 0;
+		bool auto_off = 0;
+		bool word_off = 0;
+		bool spaces_off = 0;
 
 		if (exmsg && !flg) {
 			vsrm(exmsg);
@@ -742,7 +742,7 @@ int main(int argc, char **real_argv, const char * const *envv)
 			xmsg = stagen(NULL, (BW *)(lastw(maint)->object), joe_gettext(xmsg), ' ');
 			msgnw(((BASE *)lastw(maint)->object)->parent, xmsg);
 		} else {
-			joe_snprintf_3(msgbuf,JOE_MSGBUFSIZE,joe_gettext(_("\\i** Joe's Own Editor v%s ** (%s) ** Copyright %s 1992 - 2026 **\\i")),VERSION,locale_map->name,(locale_map->type ? "©" : "(C)"));
+			joe_snprintf_3(msgbuf,JOE_MSGBUFSIZE,joe_gettext(_("\\i** Joe's Own Editor v%s ** (%s) ** Copyright %s 2015 **\\i")),VERSION,locale_map->name,(locale_map->type ? "©" : "(C)"));
 			msgnw(((BASE *)lastw(maint)->object)->parent, msgbuf);
 		}
 
